@@ -1,0 +1,27 @@
+img{
+   display:block;
+   width:15%;
+   margin-left: auto;
+   margin-right: auto;
+   border: 1px solid blue;
+}
+#cat-senses{
+    margin-left: 1.5%;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+td, th{
+    text-align: center;
+    border:1px solid black;
+}
+#blank-row{
+    height:10px;
+    border:none;
+}
+#table-header{
+    color: red;
+    font-weight: bold;
+    border: 1px solid red;   
+} 
