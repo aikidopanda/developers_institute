@@ -80,3 +80,32 @@ footer {
     border-radius: 20px;
     text-transform: uppercase;
 }
+.new{
+    height:50px;
+    width: 50px;
+    background-color: green;
+    border-radius:50%;
+    color: white;
+    font-family: Rubik;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 80px;
+    display: inline-block;
+}
+.discount{
+    height:50px;
+    width: 50px;
+    background-color: red;
+    border-radius:50%;
+    color: white;
+    font-family: Rubik;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 60px;
+    margin-right: 5px;
+    display: inline-block;
+}
+.picture-2{
+    margin-left: 190px;
+}

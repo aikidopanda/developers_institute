@@ -1,0 +1,53 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+nav,footer{
+    background-color: black;
+    height:70px;
+}
+footer{
+    margin-top: auto;
+}
+a{
+    text-decoration: none;
+    color:white;
+}
+li{
+    display: inline;
+    text-transform: uppercase;
+    list-style-type: none;
+    font-size: 20px;
+    float: right;
+    padding: 25px 20px;
+    font-family: Roboto;
+}
+body{
+    background-image: url("Thor.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    font-family: Rubik;
+    font-size: 75px;
+    margin:25px;
+}
+p{
+    font-family:Rubik;
+    font-size: 20px;
+    margin:25px;
+}
+#logo{
+    height:60px;
+    float: left;
+    padding-top: 10px;
+    margin-left:20px;
+}
+div{
+    width: 50%;
+}
+footer li{
+    float: left;
+}
