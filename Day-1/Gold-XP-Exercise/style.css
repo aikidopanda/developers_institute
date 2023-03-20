@@ -26,6 +26,7 @@
     height: 20vh;
     position: relative;
     top:60vh;
+    text-align: center;
 }
 img{
     height: 7.5vh;
@@ -34,4 +35,10 @@ img{
 }
 h1{
     color: darkblue;
+}
+.column-div{
+    text-align: center;
+    display: inline-block;
+    width: 20vw;
+    margin: 2vh 2vw;
 }
