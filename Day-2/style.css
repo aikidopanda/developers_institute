@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+}
+i{
+    font-size: 8vh;
+    color: white;
+    float: left;
+    margin-left: 2vw;
+}
+nav{
+    background-color: black;
+    display: inline-block;
+    width:100vw;
+}
+p{
+    font-family: Rubik;
+    font-size: 3.5vh;
+}
+a{
+    font-family: Rubik;
+    font-size: 3.5vh;
+    text-transform: uppercase;
+    color: white;
+    float: right;
+    margin-right: 2vw;
+    margin-top: 2vh;
+    text-decoration: none;
+}
+footer p{
+    text-transform: uppercase;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.container{
+   text-align: center;
+}
+.regular-div{
+    display: inline-block;
+}
+.div-picture{
+    background-size: cover;
+    width:270px;
+    height:348px;
+    margin:1.5vw 1.5vh;
+    border:1px solid black;
+}
+.img-1{
+    background-image: url("Img/image1.png");
+}
+.img-2{
+    background-image: url("Img/image2.png");
+}
+.img-3{
+    background-image: url("Img/image3.png");
+}
+.img-4{
+    background-image: url("Img/image4.png");
+}
+.regular-div p{
+    font-size: 14px;
+}
+.new-price{
+    color: green;
+}
+.old-price{
+    text-decoration: line-through;
+    font-size: 12px;
+}
+.buy{
+    background-color: red;
+    padding:10px 40px;
+    border:1px solid black;
+    border-radius: 20px;
+    text-transform: uppercase;
+}

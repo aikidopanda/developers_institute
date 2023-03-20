@@ -1,0 +1,37 @@
+#main-container{
+    background-image: url("background-sea.jpg");
+    background-size: cover;
+    height: 100vh;
+}
+#title{
+    font-family: Rubik;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#text-and-search-bar{
+    text-align: center;
+    height:20vh;
+    width:50vw;
+    position: relative;
+    top:40vh;
+    left:25vw;
+}
+#sign-in{
+   position: relative;
+   left:15vw;
+   margin-top:8vh;
+}
+#icons-section{
+    background-color: azure;
+    height: 20vh;
+    position: relative;
+    top:60vh;
+}
+img{
+    height: 7.5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+h1{
+    color: darkblue;
+}
