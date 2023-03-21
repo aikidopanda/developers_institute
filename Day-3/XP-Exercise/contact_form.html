@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fira+Sans:wght@500&family=Open+Sans:wght@500&family=Roboto:ital,wght@0,300;0,500;1,100&family=Rubik&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <section class="name">Alex Soroker</section>
+        <ul>
+            <li><a href="#">About Me</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><i class="fa-solid fa-paper-plane"></i></li>
+            <li><i class="fa-brands fa-facebook-f"></i></li>
+        </ul>
+    </nav>
+    <div class="container-main">
+        <form method="post">
+            <table class="table">
+                <tr>
+                    <td>Please enter your email address so I will able to answer you</td><td><input type="email" id="email" name="email"></td>
+                </tr>
+                <tr valign="top">
+                    <td align="center">Enter your message: </td><td><input type="text" id="message" name="message" required></td>
+                </tr>
+                <tr>
+                    <td></td><td align="center"><input type="submit" id="submit" name="submit" value="Send"></td>
+                </tr>               
+            </table>
+        </form>
+    </div>
+</body>
+</html>

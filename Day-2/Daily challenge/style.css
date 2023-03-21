@@ -87,7 +87,7 @@ footer li{
         color: black;
     }
 }
-@media screen and ((min-width: 600px) and (max-width: 768px )){
+@media screen and (max-width: 768px ){
     h1{
         font-size: 35px;
     }
