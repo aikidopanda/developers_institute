@@ -1,0 +1,25 @@
+.square{
+    background-color: yellow;
+    height: 75px;
+    width: 75px;
+    border: 1px solid black;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    height: 320px;
+    border: 1px solid black;
+
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+    width: 600px;
+}
