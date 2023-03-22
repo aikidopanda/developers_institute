@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap exercise</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary w-100 position-fixed" data-bs-theme="dark">
+        <div class="container-fluid w-75">
+          <a class="navbar-brand ms-3" href="#">Project Exercise #9</a>
+          <button class="navbar-toggler btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact <span class="badge rounded-pill bg-secondary">3</span></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu active">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="form">
+              <input class="form-control me-2" type="email" placeholder="Email" aria-label="Search">
+              <input class="form-control me-2" type="password" placeholder="Password" aria-label="Search">
+              <button class="btn btn-success btn-outline-light" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="jumbotron jumbotron-fluid bg-light pt-5">
+        <div class="d-flex flex-column justify-content-center container-fluid w-75">
+            <h1 class="display-3 fw-semibold pt-4 pb-5">Hello, world!</h1>
+            <p class="fs-4">This is Exercise #9. It includes a large callout called a jumbotron and three supporting pieces of content.</p>
+            <style>
+              .btn-primary{
+                width: 10vw;
+              }
+              @media screen and (max-width:400px){
+                .btn-primary{
+                  width: 50vw;
+                }
+              }
+            </style>
+            <button type="button" class="btn btn-lg btn-primary mb-5">Learn more</button>
+        </div>
+      </div>
+      <div class="container-fluid pt-4 w-75">
+          <div class="row">
+            <div class="col">
+              <h6 class="display-6 fw-semibold">Heading</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <button class="btn btn-medium btn-light"> <i class="bi bi-bar-chart-fill"></i> View details </button>
+            </div>
+            <div class="col">
+              <h6 class="display-6 fw-semibold">Heading</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button class="btn btn-medium btn-light"> <i class="bi bi-phone"></i> View details</button>
+            </div>
+            <div class="col">
+              <h6 class="display-6 fw-semibold">Heading <span class="badge bg-info text-light">New</span></h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button class="btn btn-medium btn-light"> <i class="bi bi-geo-alt-fill"></i>
+                   View details</button>
+            </div>
+          </div>     
+      </div>
+</body>
+</html>
