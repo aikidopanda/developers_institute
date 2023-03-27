@@ -13,9 +13,9 @@ while a_used == False:
     counter = 0
     for char in sentence:
         if char == 'a' or char == 'A':
-            a_used == True
+            a_used = True
             maxcounter = 0
-            print ('You lost! Your record has be set to {}'.format(maxcounter))
+            print ('You lost! Your record has been set to {}'.format(maxcounter))
             break
         else:
             counter = counter + 1

@@ -5,7 +5,7 @@ elif len(string) < 10:
     print('Your string is too short')
 
 print (string[0])
-print (string[len(string) - 1])
+print (string[len(string) - 1]) #string[-1] also works
 
 newstring = ''
 for char in range(0, len(string)):
