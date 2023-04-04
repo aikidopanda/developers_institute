@@ -60,8 +60,3 @@ p. go_to_page()
 p.get_visible_items()
 print (p.totalpages)
 print(p.currentpage)
-# list_temp=[]
-# j = 0
-# for i in range(p.pagesize * j, p.pagesize * (j+1)):
-#     list_temp.append(p.items[i])
-# print(list_temp)
