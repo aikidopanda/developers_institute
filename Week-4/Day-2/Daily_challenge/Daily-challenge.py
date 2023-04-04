@@ -50,9 +50,11 @@ alphabetList = list("abcdefghijklmnopqrstuvwxyz")
 p = Pagination(alphabetList, 4)
 
 print(p.items)
-
+#Testing
 p.get_visible_items()
 p.next_page()
+p.get_visible_items()
+p.prev_page()
 p.get_visible_items()
 p.last_page()
 p.get_visible_items()
