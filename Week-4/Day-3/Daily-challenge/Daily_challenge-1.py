@@ -1,3 +1,4 @@
+import turtle
 class Circle: # did everything except printing the circle. Dont know how to draw in terminal:)
     def __init__(self,radius):
         self.radius = radius
@@ -30,3 +31,6 @@ print(my_circle < my_circle_2)
 print(my_circle == my_circle_2)
 circles_list.sort(key = lambda x: x.radius, reverse = True)
 print(circles_list)
+t = turtle.Turtle()
+t.circle(my_circle.radius + my_circle_2.radius)
+turtle.exitonclick()
