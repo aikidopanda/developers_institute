@@ -1,4 +1,6 @@
+#import gensim # I have a 'ModuleNotFoundError: No module named 'gensim'' error so can't check if my code works:( i have installed and reinstalled mumpy and gensim over 9000 times
 from collections import Counter
+import string
 class Text:
     def __init__(self, text):
         self.text = text
@@ -26,15 +28,28 @@ class Text:
             return text_ext
         
 class TextModification(Text):
-    pass #gonna do it later today if I have time, since this is bonus
+    def remove_punctuation(self):
+        modified_text = self.text.translate(str.maketrans('','',string.punctuation))
+        return modified_text
+    # def remove_all_stopwords(self):
+    #     modified_text = remove_stopwords(self.text)
+    #     return modified_text
+    def remove_special(self):
+        modified_text = ''.join(ch for ch in self.text if ch.isalnum())
+        return modified_text
+        
 
 
 
 
 text = Text('A good book would sometimes cost as much as a good house.')
-print(Text.frequency(Text.from_ext_file(), 'French'))
-print(Text.most_common(Text.from_ext_file()))
-print(Text.unique_words(Text.from_ext_file()))
+# print(Text.frequency(Text.from_ext_file(), 'French'))
+# print(Text.most_common(Text.from_ext_file()))
+# print(Text.unique_words(Text.from_ext_file()))
+# print(TextModification.remove_punctuation(Text.from_ext_file()))
+# # print(TextModification.remove_all_stopwords(Text.from_ext_file()))
+print(TextModification.remove_special(Text.from_ext_file()))
 
 Text.from_ext_file()
+
 
