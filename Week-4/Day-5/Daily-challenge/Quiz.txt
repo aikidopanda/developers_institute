@@ -1,0 +1,8 @@
+1. Class is a type of data-structure which allows user to customize how it should remember and operare data.
+2. An instance is a single case of a certain class. Contrary to the class, it usually contains an actual values.
+3. Encapsulation is a mechanism of hiding class variables and methods from the code outside the class, making them accessed only by current class.
+4. Abstraction is a mechanism of hiding unnecessary information from the user.
+5. Inheritance is a principle in according to which classes can take attributes and methods from their 'parent' classes.
+6. Multiple inheritance is the ability of class to take attributes/methods from more than one 'parent' class.
+7. Polymorphism is the ability of multiple classes to use the same names for their methods/functions
+8. MRO or linearization is a set of rules according to which class methods are executed.
