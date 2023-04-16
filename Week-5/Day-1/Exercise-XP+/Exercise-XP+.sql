@@ -8,12 +8,13 @@ insert into students (last_name, first_name, birth_date) values
 ('Simpson', 'Omer', '10/03/1980'),
 ('Soroker', 'Alex', '12/05/1988');
 select * from students;
-select * from students where last_name = 'Benichou' and first_name = 'Mark';
-select * from students where last_name = 'Benichou' or first_name = 'Mark';
-select * from students where first_name like '%a%' or first_name like '%A%';
-select * from students where first_name like 'A%';
-select * from students where first_name like '%a';
-select * from students where substring(reverse(first_name), 2, 1) = 'a';
-select * from students where id = 1 or id = 3;
-select * from students where id = 1 and id = 3;
+select first_name, last_name from students;
+select first_name, last_name from students where last_name = 'Benichou' and first_name = 'Mark';
+select first_name, last_name from students where last_name = 'Benichou' or first_name = 'Mark';
+select first_name, last_name from students where first_name like '%a%' or first_name like '%A%';
+select first_name, last_name from students where first_name like 'A%';
+select first_name, last_name from students where first_name like '%a';
+select first_name, last_name from students where substring(reverse(first_name), 2, 1) = 'a';
+select first_name, last_name from students where id = 1 or id = 3;
+select first_name, last_name from students where id = 1 and id = 3;
 select * from students where birth_date >= '01-01-2000'
