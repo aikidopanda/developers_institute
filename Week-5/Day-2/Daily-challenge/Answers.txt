@@ -1,0 +1,72 @@
+CREATE TABLE FirstTab (
+     id integer, 
+     name VARCHAR(10)
+)
+
+this will create an empty table with two columns, one having integer data type and one is a string limited by 10 characters
+
+INSERT INTO FirstTab VALUES
+(5,'Pawan'),
+(6,'Sharlee'),
+(7,'Krish'),
+(NULL,'Avtaar')
+
+this will insert 4 rows. NULL also will be applied cause this is no limits prohibiting this
+
+SELECT * FROM FirstTab
+
+this will fetch all data from FirstTab table
+
+CREATE TABLE SecondTab (
+    id integer 
+)
+
+this will create a second table with one column (integer data type)
+
+INSERT INTO SecondTab VALUES
+(5),
+(NULL)
+
+this will insert two rows into SecondTab
+
+SELECT * FROM SecondTab
+
+this will fetch all data from SecondTab
+
+Questions:
+
+Q1. What will be the OUTPUT of the following statement?
+
+    SELECT COUNT(*) 
+    FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab WHERE id IS NULL )
+
+this will return 0  
+
+Q2. What will be the OUTPUT of the following statement?
+
+    SELECT COUNT(*) 
+    FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab WHERE id = 5 )
+
+this also will return 2
+
+Q3. What will be the OUTPUT of the following statement?
+
+    SELECT COUNT(*) 
+    FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab )
+
+this will return 0
+
+Q4. What will be the OUTPUT of the following statement?
+
+    SELECT COUNT(*) 
+    FROM FirstTab AS ft WHERE ft.id NOT IN ( SELECT id FROM SecondTab WHERE id IS NOT NULL )
+
+this will return 2
+
+
+
+
+
+
+
+
