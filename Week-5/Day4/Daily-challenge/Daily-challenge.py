@@ -4,7 +4,7 @@ import psycopg2
 
 HOSTNAME = 'localhost'
 USERNAME = 'postgres'
-PASSWORD = 'redoran16482'
+PASSWORD = '#'
 DATABASE = 'Home'
 
 connection = psycopg2.connect(host = HOSTNAME, user = USERNAME, password = PASSWORD, dbname = DATABASE)
