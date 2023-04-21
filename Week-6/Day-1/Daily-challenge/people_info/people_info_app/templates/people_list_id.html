@@ -1,0 +1,5 @@
+{% for person in people_list %}
+    {% if person.id == id %}
+        <p>Name: {{ person.name }}, Age: {{ person.age }}, Country: {{ person.country }}</p>
+    {% endif %}
+{% endfor %}

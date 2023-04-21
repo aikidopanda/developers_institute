@@ -1,0 +1,8 @@
+<ol>
+    {% for person in people_list %}
+    <li>
+        Name: {{ person.name }}, Age: {{ person.age }}, Country: {{ person.country }}
+        <a href = '{{ person.id }}'>View personal details</a>
+    </li>
+    {% endfor %}
+</ol>
