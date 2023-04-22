@@ -20,6 +20,6 @@ from info.views import families, animals
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('animals/',animals),
-    path('families/',families),
+    path('animals/<int:id>',animals),
+    path('families/<int:id>',families),
 ]

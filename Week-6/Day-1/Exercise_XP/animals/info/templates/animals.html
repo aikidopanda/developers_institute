@@ -1,5 +1,12 @@
+{% load static %}
+
 <p>This is a page of {{ animal_name }}</p>
 <p>It has {{ animal_legs }} legs</p>
 <p>Its height is {{ animal_height }}, weight is {{ animal_weight }}</p>
 <p>It can move with speed of  {{ animal_speed }}</p>
 <p>It belongs to {{ animal_family }} family.</p>
+
+{% with 'images/'|add:image as imagePath %}
+    <img style= "height: 250px" src='{% static imagePath %}' />
+{% endwith %}
+

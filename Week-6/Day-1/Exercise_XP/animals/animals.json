@@ -38,7 +38,7 @@
         },
         {
             "id": 5,
-            "name": "Tarantul",
+            "name": "Tarantula",
             "legs": 8,
             "weight": 0.67,
             "height":0.22,
@@ -55,7 +55,7 @@
             "family": 2 
         },
         {
-            "id": 4,
+            "id": 7,
             "name": "Frog",
             "legs": 4,
             "weight": 0.67,
