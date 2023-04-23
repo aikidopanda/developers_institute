@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol>
+        {% for animal in animals %}
+        <li>
+        <ul>
+            <li> Name: {{ animal.name }}</li>
+            <li> Legs: {{ animal.legs }} </li>
+            <li> Height: {{ animal.height }}</li>
+            <li>Weight: {{ animal.weight }}.</li>
+            <li>Speed: {{ animal.speed }}</li> 
+            <li>Family: {{ animal.family.name }}</li>
+            <li><a href ="/animals/{{ animal.id }}">More info</a></li>   
+        </ul>
+        </li><br>
+        {% endfor %}
+    </ol>
+</body>
+</html>
+
