@@ -7,11 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-<form action = "/getbyname/" method = "POST">
-    {% csrf_token %}
-    {{ form }}
-<input type="submit" value="Search">
-</form>
-{{ result }}
+    <ol>
+    {% for cat in all_cats %}
+        <li>{{ cat.name }}  <a href='../categoryview/{{ cat.id }}'>View category</a></li><br>
+    {% endfor %}
+    </ol>
 </body>
 </html>

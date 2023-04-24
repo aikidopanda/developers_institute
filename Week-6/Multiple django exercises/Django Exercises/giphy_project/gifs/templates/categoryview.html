@@ -7,11 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-<form action = "/getbyphone/" method = "POST">
-    {% csrf_token %}
-    {{ form }}
-<input type="submit" value="Search">
-</form>
-{{ result }}
+    {% for gif in gifs_list %}
+        <p> {{ gif }} </p>
+        <p><img src='{{ gif.url }}'></p>
+    {% endfor %}
 </body>
 </html>
