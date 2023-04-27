@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Searching persons by phone</title>
+    <title>Document</title>
 </head>
 <body>
-<form action = "/getbyphone/" method = "POST">
-    {% csrf_token %}
-    {{ form.as_table }}
-<input type="submit" value="Search">
-</form>
-{{ result }}
+    <ol>
+        {% for rental in rentals_list %}
+            <li>{{ rental }}</li>
+            <a href = '../rent/rental/{{ rental.id }}'>View details</a><br>
+        {% endfor %}
+    </ol>  
 </body>
 </html>

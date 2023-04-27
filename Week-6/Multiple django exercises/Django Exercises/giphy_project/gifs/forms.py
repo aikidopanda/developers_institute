@@ -14,7 +14,6 @@ class CategoryForm(forms.Form):
 
 
 class LikeForm(forms.Form):
-    gif = forms.ModelChoiceField(queryset=Gif_Model.objects.all())
-    like = forms.BooleanField()
-    dislike = forms.BooleanField()
+    gif = forms.ModelChoiceField(queryset=Gif_Model.objects.all(), widget=forms.HiddenInput())
+    like = forms.BooleanField(required = False, widget=forms.HiddenInput())
     # use list(zip) function to connect buttons with gifs

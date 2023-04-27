@@ -1,14 +1,34 @@
 from django.shortcuts import render
 from .models import Gif_Model, Category
-from .forms import GifForm, CategoryForm
+from .forms import GifForm, CategoryForm, LikeForm
 from datetime import datetime
 
 # Create your views here.
 
 def homepage_view(request):
-    all_gifs = Gif_Model.objects.all()
+    all_gifs = Gif_Model.objects.all().order_by('title')
+    like_forms = [LikeForm(initial = {'gif': gif_instance, 'like': True}) for gif_instance in all_gifs]
+    dislike_forms = [LikeForm(initial = {'gif': gif_instance, 'like': False}) for gif_instance in all_gifs]
+
+    if request.method == 'POST':
+        likeform_submitted = LikeForm(request.POST)
+        if likeform_submitted.is_valid():
+
+            gif = likeform_submitted.cleaned_data['gif']
+            like = likeform_submitted.cleaned_data['like']
+
+            if like:
+                gif.likes += 1
+            else:
+                gif.likes -= 1
+
+            gif.save()
+
+    gifs_forms = list(zip(all_gifs, like_forms, dislike_forms))
+
     context = {
-        'all_gifs': all_gifs
+        'all_gifs': all_gifs,
+        'gifs_forms': gifs_forms
     }
     return render(request, 'homepage.html', context)
 

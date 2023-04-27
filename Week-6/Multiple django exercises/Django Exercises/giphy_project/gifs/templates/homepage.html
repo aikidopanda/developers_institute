@@ -13,8 +13,22 @@
     <p>
         <a href = '../addcategory'>Add a new category</a>
     </p>
-    {% for gif in all_gifs %}
+    <!-- {% for gif in all_gifs %}
     <br><img height='250px' src ='{{ gif.url }}'><br>
+    {% endfor %} -->
+    {% for gif, like, dislike in gifs_forms %}
+        {{ gif }}
+        {{ gif.likes }}
+        <form method='POST'>
+            {% csrf_token %}
+                {{ like }}
+                <button type = "submit">LIKE</button>
+        </form>
+        <form method='POST'>
+            {% csrf_token %}
+                {{ dislike }}
+                <button type = "submit">DISLIKE</button>
+        </form>
     {% endfor %}
 </body>
 </html>

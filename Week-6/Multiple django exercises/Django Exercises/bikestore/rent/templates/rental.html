@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View rental #{{ id }}</title>
+</head>
+<body>
+    <p>{{ rental }}</p>
+    <p><a href='../customer/{{ rental.customer_id }}'>View customer details</a></p>
+    <p><a href='../vehicle/{{ rental.vehicle_id }}'>View vehicle details</a></p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Return vehicle">
+    </form>
+    {{ msg }}
+</body>
+</html>
