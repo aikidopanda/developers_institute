@@ -1,8 +1,12 @@
 from django.db import models
 
+# from trait_functions import attacked, longspear
+# Trait functions
+longspear = ['Pikeman']
+healer = ['Monk']
 
 class Player(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default='Player')
     games_won = models.IntegerField()
     gold = models.IntegerField()
     health = models.IntegerField()
@@ -11,7 +15,6 @@ class Player(models.Model):
 
     def __str__(self):
         return f'{self.name}, {self.health}, {self.gold}'
-
 
 
 class Faction(models.Model):
@@ -43,10 +46,28 @@ class Card(models.Model):
         self.save()
 
     def fight_melee(self, other):
+        if other.name in longspear:
+            other.attacked(self)
         other.health -= self.attack
         self.health -= other.attack
         other.save()
         self.save()
+
+    def attacked(self, other):
+        other.health -= 1
+        other.save()
+        if other.health <= 0:
+            other.attack = 0
+            other = None
+
+    def endofturn(self, board):
+        if self.name in healer:
+            for k,v in board.items():
+                for i in range(len(v)):
+                    if v[i] != None and v[i].health < v[i].health_base:
+                        v[i].health += 1
+        
+        
 
 
 
