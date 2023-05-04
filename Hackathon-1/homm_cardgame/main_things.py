@@ -11,8 +11,6 @@ from game.models import *
 
 player_deck, opponent_deck, player_hand, opponent_hand, player_discard, opponent_discard = [], [], [], [], [], []
 
-initialized = False
-
 player_board = {
     'front': [None, None, None, None],
     'rear': [None, None, None, None],
@@ -22,8 +20,6 @@ opponent_board = {
     'front': [None, None, None, None],
     'rear': [None, None, None, None],
 }
-initialized = True
-
 turn_num = 0
 
 def start_game():
@@ -39,22 +35,6 @@ def start_game():
     for i in range(2):
         deal_card(player_deck, player_hand)
         deal_card(opponent_deck, opponent_hand)
-
-
-def main_menu():
-    user_choice = input(
-        'S - start a new game, Q - quit, C - clean the database(admin)')
-    if user_choice.upper() == 'S':
-        start_game()
-    elif user_choice.upper() == 'Q':
-        print('See you next time!')
-        sys.exit()
-    elif user_choice.upper() == 'C':
-        cleanup()
-        main_menu()
-    else:
-        print('Invalid input! Press either S to start a game or Q for exit')
-        main_menu()
 
 
 def create_factions():
@@ -179,53 +159,78 @@ def deal_card(deck, hand):
         hand.append(card)
 
 
-def player_turn():
-    passed = False
+def cleanup():
+    Card.objects.all().delete()
+    Player.objects.all().delete()
+    Faction.objects.all().delete()
 
-    # global human_player
-    human_player = Player.objects.get(human=True)
-    opponent_player = Player.objects.get(human=False)
-    turn_income = 2 + math.floor(turn_num/3)
-    human_player.gold += turn_income
-    if human_player.gold > turn_income * 2:
-        human_player.gold = turn_income * 2
-    human_player.save()
-    if len(player_deck) > 0:
-        deal_card(player_deck, player_hand)
-    if player_first == True:
-        action = 'attacking'
-    else:
-        action = 'defending'
 
-    while passed == False:
+# def main_menu():
+#     user_choice = input(
+#         'S - start a new game, Q - quit, C - clean the database(admin)')
+#     if user_choice.upper() == 'S':
+#         start_game()
+#     elif user_choice.upper() == 'Q':
+#         print('See you next time!')
+#         sys.exit()
+#     elif user_choice.upper() == 'C':
+#         cleanup()
+#         main_menu()
+#     else:
+#         print('Invalid input! Press either S to start a game or Q for exit')
+#         main_menu()
 
-        print(f'Its turn {turn_num}. You are {action} this turn. Your cards are: {player_hand}. You have {human_player.gold} gold\n You have {human_player.health} health and your opponent has {opponent_player.health}\n')
-        # player chooses a card to play
-        c = input(
-            'Choose a card to play (enter a card number, from left to right) or press P to pass: ')
-        if c.upper() == 'P':
-            passed = True
-            break
-        else:
-            intc = int(c)
-        card = player_hand[intc - 1]
-        if card.cost > human_player.gold:
-            print('Not enough gold, choose another card or pass')
-            continue
-        # player chooses a field on the board where to play the card
-        f = input(f'You chose {card}. Choose a place on the board where to play your card, separated by a comma. For example: front, 2 for second position on the frontline: ')
-        splitted = f.split(',')
-        row = splitted[0]
-        col = int(splitted[1])
 
-        if player_board[row][col - 1] != None:
-            print('This field is already occupied')
-        else:
-            player_board[row][col - 1] = card
-            player_hand.remove(card)
-            human_player.gold = human_player.gold - card.cost
-            human_player.save()
-        display_board()
+
+
+
+# def player_turn():
+#     passed = False
+
+#     # global human_player
+#     human_player = Player.objects.get(human=True)
+#     opponent_player = Player.objects.get(human=False)
+#     turn_income = 2 + math.floor(turn_num/3)
+#     human_player.gold += turn_income
+#     if human_player.gold > turn_income * 2:
+#         human_player.gold = turn_income * 2
+#     human_player.save()
+#     if len(player_deck) > 0:
+#         deal_card(player_deck, player_hand)
+#     if player_first == True:
+#         action = 'attacking'
+#     else:
+#         action = 'defending'
+
+#     while passed == False:
+
+#         print(f'Its turn {turn_num}. You are {action} this turn. Your cards are: {player_hand}. You have {human_player.gold} gold\n You have {human_player.health} health and your opponent has {opponent_player.health}\n')
+#         # player chooses a card to play
+#         c = input(
+#             'Choose a card to play (enter a card number, from left to right) or press P to pass: ')
+#         if c.upper() == 'P':
+#             passed = True
+#             break
+#         else:
+#             intc = int(c)
+#         card = player_hand[intc - 1]
+#         if card.cost > human_player.gold:
+#             print('Not enough gold, choose another card or pass')
+#             continue
+#         # player chooses a field on the board where to play the card
+#         f = input(f'You chose {card}. Choose a place on the board where to play your card, separated by a comma. For example: front, 2 for second position on the frontline: ')
+#         splitted = f.split(',')
+#         row = splitted[0]
+#         col = int(splitted[1])
+
+#         if player_board[row][col - 1] != None:
+#             print('This field is already occupied')
+#         else:
+#             player_board[row][col - 1] = card
+#             player_hand.remove(card)
+#             human_player.gold = human_player.gold - card.cost
+#             human_player.save()
+#         display_board()
 
 
 # def turn():
@@ -302,13 +307,6 @@ def player_turn():
 #     turn()
 
 
-def display_board():
-    print(f"\n {opponent_board['rear']}\n {opponent_board['front']}\n\n {player_board['front']}\n {player_board['rear']}\n\n")
+# def display_board():
+#     print(f"\n {opponent_board['rear']}\n {opponent_board['front']}\n\n {player_board['front']}\n {player_board['rear']}\n\n")
 
-
-def cleanup():
-    Card.objects.all().delete()
-    Player.objects.all().delete()
-    Faction.objects.all().delete()
-
-# main_menu()

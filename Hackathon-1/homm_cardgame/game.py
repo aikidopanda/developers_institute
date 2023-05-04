@@ -17,6 +17,7 @@ FPS = 30
 clicked = False
 initialized = False
 
+#Colours of the buttons and badges
 black = (0, 0, 0)
 blue = (88, 60, 178)
 red = (204, 0, 0)
@@ -28,17 +29,6 @@ player_color = (48, 19, 196)
 opponent_color = (192, 42, 19)
 
 active_card = None
-
-
-def text_objects(text, font):
-    textSurface = font.render(text, True, maroon)
-    return textSurface, textSurface.get_rect()
-
-
-def text_objects_sm(text, font):
-    textSurface = font.render(text, True, yellow)
-    return textSurface, textSurface.get_rect()
-
 
 coinflip = random.randint(1, 2)
 if coinflip == 1:
@@ -58,29 +48,42 @@ gamerunning = False
 
 # GUI drawing functions
 
+def text_objects(text, font):
+    textSurface = font.render(text, True, maroon)
+    return textSurface, textSurface.get_rect()
 
-def button(msg, x, y, width, height, colour, action=None):
+
+def text_objects_sm(text, font):
+    textSurface = font.render(text, True, yellow)
+    return textSurface, textSurface.get_rect()
+
+
+def button(msg, x, y, width, height, colour, status, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
     if x + width > mouse[0] > x and y + height > mouse[1] > y:
+        if status == 'active':
+            colour = maroon
         if click[0] == 1 and action != None and clicked == False:
             action()
 
     pygame.draw.rect(screen, colour, (x, y, width, height))
 
-    smallText = pygame.font.Font("freesansbold.ttf", 20)
+    smallText = pygame.font.Font("freesansbold.ttf", 18)
     textSurf, textRect = text_objects_sm(msg, smallText)
     textRect.center = ((x+(width/2)), (y+(height/2)))
     screen.blit(textSurf, textRect)
 
 
-def button_round(msg, x, y, radius, colour, action=None):
+def button_round(msg, x, y, radius, colour, status, action=None):
     global clicked
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
     if x + radius > mouse[0] > x - radius and y + radius > mouse[1] > y - radius:
+        if status == 'active':
+            colour = maroon
         if click[0] == 1 and action != None and clicked == False:
             clicked = True
             action()
@@ -147,17 +150,19 @@ def start():
 def menuexit():
     global menurunning, gamerunning
     gamerunning = False
-    menurunning = True
+    menurunning = True #doesn't work as intended yet, should work on it when I have time
 
 def exit_game():
     global menurunning
     global gamerunning
     menurunning = False
+    gamerunning = False
 
 
 def processing():
-    global turn_num
+    global turn_num, clicked
     opponent_turn()
+    pygame.time.delay(1500)
     if player_first == True:
         for line in ['front', 'rear']:
             attacking(player_board[line])
@@ -172,6 +177,8 @@ def processing():
         for i in range(len(v)):
             if v[i] != None:
                 v[i].endofturn(opponent_board)
+    pygame.time.delay(1000)
+    clicked = False
     turn_num += 1
     player_turn_gui()
 
@@ -189,7 +196,7 @@ def player_turn_gui():
     turn_income = 2 + math.floor(turn_num/3)
     human_player.gold += turn_income
     if human_player.gold > turn_income * 2:
-        human_player.gold = turn_income * 2
+        human_player.gold = turn_income * 2 # The max amount of gold players can keep should be limited, otherwise cards will be hoarded to build a decisive combo
     human_player.save()
     if len(player_deck) > 0:
         deal_card(player_deck, player_hand)
@@ -197,9 +204,8 @@ def player_turn_gui():
 
 def opponent_turn():
     opponent_player = Player.objects.get(human=False)
-    turn_income_ai = 2 + math.floor(turn_num/2)
+    turn_income_ai = 2 + math.floor(turn_num/2) # computer opponent gets more gold than player, otherwise it's too easy to beat
     opponent_player.gold += turn_income_ai
-    # The limit for gold, motivating players to spend it and play cards
     if opponent_player.gold > turn_income_ai * 2:
         opponent_player.gold = turn_income_ai * 2
     opponent_player.save()
@@ -210,16 +216,15 @@ def opponent_turn():
     while opponent_player.gold > 0:
         hand_to_play = []
         card_placed = False
-        random_placer = random.randint(1, 10)
+        random_placer = random.randint(1, 10) # Not the best strategy, but at least opponent won't be 100% predictable:)
         for i in range(len(opponent_hand)):
             if opponent_hand[i].cost <= opponent_player.gold:
-                hand_to_play.append(opponent_hand[i])
+                hand_to_play.append(opponent_hand[i]) # Choosing from computer player's hand all the cards he is actually able to play
         if len(hand_to_play) == 0:
             break
         else:
-            # c = random.choice(hand_to_play)
             index = random.randint(0, len(hand_to_play) - 1)
-            c = hand_to_play.pop(index)
+            c = hand_to_play.pop(index) # Computer opponent chooses a card
         if c.ranged == False:
             for k, v in opponent_board.items():
                 for i in range(len(v)):
@@ -233,7 +238,7 @@ def opponent_turn():
         else:
             for k, v in opponent_board.items():
                 for i in range(len(v)):
-                    if k != 'front' and random_placer >= 6:
+                    if k == 'rear' and random_placer >= 6:
                         if v[i] == None and card_placed == False:
                             v[i] = c
                             card_placed = True
@@ -246,7 +251,7 @@ def opponent_turn():
 
 
 def attacking(line):
-    global player_discard, opponent_discard
+    global player_discard, opponent_discard # Not used yet, but it's surely necessary for my future plans
 
     human_player = Player.objects.get(human=True)
     opponent_player = Player.objects.get(human=False)
@@ -260,7 +265,7 @@ def attacking(line):
         enemyrear = player_board['rear']
         enemy = human_player
 
-    # discard1 is the attacking side discard, discard2 is the defending start discard
+    # discard1 is attacker discard, discard2 is defender discard
     discard1, discard2 = [], []
 
     for i in range(len(line)):
@@ -272,7 +277,7 @@ def attacking(line):
                     line[i].fight_range(enemyfront[i])
                 if enemyfront[i].health <= 0:
                     discard2.append(enemyfront[i])
-                    enemyfront[i] = None
+                    enemyfront[i] = None # If card is killed, clear its slot
             elif enemyrear[i] != None:
                 if line[i].ranged == False:
                     line[i].fight_melee(enemyrear[i])
@@ -316,8 +321,8 @@ while menurunning:
     TextRect.center = (800, 300)
     screen.blit(TextSurf, TextRect)
 
-    button('Start game', 200, 600, 400, 100, red, start)
-    button('Quit', 1000, 600, 400, 100, red, exit_game)
+    button('Start game', 700, 500, 200, 100, red, 'active', start)
+    button('Quit', 700, 650, 200, 100, red, 'active', exit_game)
 
     pygame.display.flip()
     CLOCK.tick(FPS)
@@ -346,10 +351,10 @@ while gamerunning:
 
     if human_player.health <= 0 or opponent_player.health <= 0:
         button(f"{status} Press Esc to quit",
-                          10, 825, 650, 75, player_color)
+                          10, 825, 650, 75, player_color,'passive')
     else:
         button(f"Its turn {turn_num}. You are {action}. Press the card number to play it",
-                          10, 825, 650, 75, player_color)
+                          10, 825, 650, 75, player_color,'passive')
 
     for j in range(2):
         if j == 0:
@@ -358,14 +363,14 @@ while gamerunning:
                          87, 115, player_color, i)
                 if player_board['front'][i]:
                     button(f"{player_board['front'][i].attack} | {player_board['front'][i].health}",
-                          873 + i * 100, 640 + j * 150, 87, 20, player_color)
+                          873 + i * 100, 640 + j * 150, 87, 20, player_color, 'passive')
         if j == 1:
             for i in range(4):
                 cardslot_rear(873 + i * 100, 525 + j * 150,
                               87, 115, player_color, i)
                 if player_board['rear'][i]:
                     button(f"{player_board['rear'][i].attack} | {player_board['rear'][i].health}",
-                          873 + i * 100, 640 + j * 150, 87, 20, player_color)
+                          873 + i * 100, 640 + j * 150, 87, 20, player_color, 'passive')
 
     for j in range(2):
         if j == 0:
@@ -374,27 +379,29 @@ while gamerunning:
                     873 + i * 100, 25 + j * 150, 87, 115, opponent_color, i)
                 if opponent_board['rear'][i]:
                     button(f"{opponent_board['rear'][i].attack} | {opponent_board['rear'][i].health}",
-                          873 + i * 100, 140 + j * 150, 87, 20, opponent_color)
+                          873 + i * 100, 140 + j * 150, 87, 20, opponent_color, 'passive')
         if j == 1:
             for i in range(4):
                 cardslot_opponent(873 + i * 100, 25 + j * 150,
                                   87, 115, opponent_color, i)
                 if opponent_board['front'][i]:
                     button(f"{opponent_board['front'][i].attack} | {opponent_board['front'][i].health}",
-                          873 + i * 100, 140 + j * 150, 87, 20, opponent_color)
+                          873 + i * 100, 140 + j * 150, 87, 20, opponent_color, 'passive')
 
     for i in range(len(player_hand)):
         screen.blit(pygame.image.load(
             player_hand[i].image), (20 + i * 100, 710))
         button(f"{player_hand[i].attack} | {player_hand[i].health}",
-                          20 + i * 100, 690, 87, 20, opponent_color)
+                          20 + i * 100, 690, 87, 20, opponent_color, 'passive')
+        button(f"Cost: {player_hand[i].cost}",
+                          20 + i * 100, 660, 87, 20, maroon, 'passive')
 
-    button_round('End turn', 1060, 410, 75, red, processing)
+    button_round('End turn', 1060, 410, 75, red, 'active', processing)
 
-    button_round(f'{human_player.health} HP', 1375, 660, 50, maroon)
-    button_round(f'{opponent_player.health} HP', 1375, 170, 50, maroon)
-    button_round(f'{human_player.gold} Gold', 1475, 660, 50, maroon)
-    button_round(f'{opponent_player.gold} Gold', 1475, 170, 50, maroon)
+    button_round(f'{human_player.health} HP', 1375, 660, 50, maroon, 'passive')
+    button_round(f'{opponent_player.health} HP', 1375, 170, 50, maroon, 'passive')
+    button_round(f'{human_player.gold} Gold', 1475, 660, 50, maroon, 'passive')
+    button_round(f'{opponent_player.gold} Gold', 1475, 170, 50, maroon, 'passive')
 
     for event in pygame.event.get():
         human_player = Player.objects.get(human=True)
@@ -404,8 +411,8 @@ while gamerunning:
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 menuexit()
-            elif event.key == K_SPACE:
-                clicked = False
+            # elif event.key == K_SPACE:
+            #     clicked = False
 
             if event.key == K_1 and player_hand[0] != None and human_player.gold >= player_hand[0].cost:
                 human_player.gold = human_player.gold - player_hand[0].cost
