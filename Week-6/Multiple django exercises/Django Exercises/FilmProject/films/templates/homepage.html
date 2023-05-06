@@ -7,10 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- {% include 'partials/navbar.html' %}
-    {% include 'partials/base.html' %} -->
+    {% include 'partials/navbar.html' %}
+    <ul class="list-group">
     {% for film in films %}
-        <p>{{ film }}</p>
+        <li class="list-group-item">{{ film.title }} | {{ film.release_date }} | {{ film.created_in_country }} | 
+            {% for director in film.director.all %}
+            {{ director }}
+            {% endfor %} |
+            {% for category in film.category.all %}
+            {{ category }}
+            {% endfor %}
+        </li>
     {% endfor %}
+    </ul>
+    {% include 'partials/base.html' %}   
 </body>
 </html>

@@ -22,7 +22,7 @@ class Director(models.Model):
 
 class Film(models.Model):
     title = models.CharField(max_length=50)
-    release_date = models.DateField(auto_now_add=True)
+    release_date = models.DateField()
     created_in_country = models.ForeignKey(Country, related_name = 'created_in', on_delete=models.CASCADE)
     available_in_countries = models.ManyToManyField(Country, related_name='available_in', null=True)
     category = models.ManyToManyField(Category, related_name='category')

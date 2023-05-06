@@ -61,11 +61,18 @@ class Card(models.Model):
             other = None
 
     def endofturn(self, board):
+        human_player = Player.objects.get(human=True)
+        opponent_player = Player.objects.get(human=False)
         if self.name in healer:
             for k,v in board.items():
                 for i in range(len(v)):
                     if v[i] != None and v[i].health < v[i].health_base:
                         v[i].health += 1
+                    if board == player_board:
+                        human_player.health += 1
+                    else:
+                        opponent_player.health += 1
+
         
         
 

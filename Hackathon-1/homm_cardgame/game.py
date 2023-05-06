@@ -391,10 +391,12 @@ while gamerunning:
     for i in range(len(player_hand)):
         screen.blit(pygame.image.load(
             player_hand[i].image), (20 + i * 100, 710))
+        button(f"{i + 1}",
+                        43 + i * 100, 640, 43, 20, player_color, 'passive')
         button(f"{player_hand[i].attack} | {player_hand[i].health}",
-                          20 + i * 100, 690, 87, 20, opponent_color, 'passive')
+                        20 + i * 100, 690, 87, 20, opponent_color, 'passive')
         button(f"Cost: {player_hand[i].cost}",
-                          20 + i * 100, 660, 87, 20, maroon, 'passive')
+                        20 + i * 100, 660, 87, 20, maroon, 'passive')
 
     button_round('End turn', 1060, 410, 75, red, 'active', processing)
 

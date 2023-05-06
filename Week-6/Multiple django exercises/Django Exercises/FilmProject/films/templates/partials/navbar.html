@@ -9,8 +9,14 @@
 </head>
 <body>
     {% block content %}
-    <section class="navbar">
-    </section> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="../addfilm">Add new film</a>
+            <a class="nav-item nav-link" href="../adddirector">Add new director</a>
+          </div>
+        </div>
+      </nav>
     {% endblock %}
 </body>
 </html>

@@ -64,7 +64,7 @@ def create_units_deck(deck):
             name='Archer',
             health=2,
             health_base=2,
-            attack=2,
+            attack=3,
             cost=3,
             ranged=True,
             flying=False,
