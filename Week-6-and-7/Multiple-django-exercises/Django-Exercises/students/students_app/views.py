@@ -8,19 +8,32 @@ from rest_framework.response import Response
 from rest_framework.status import (HTTP_200_OK, 
 HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_204_NO_CONTENT)
 from rest_framework.permissions import AllowAny
+from rest_framework import generics
 
 # Create your views here.
 
-class StudentsList(APIView):
+class StudentsList(generics.ListAPIView):
 
-    def get(self, request, *args, **kwargs):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = (AllowAny,)
 
-        permission_classes = (AllowAny,)
+    # def get(self, request, *args, **kwargs):
 
-        students = Student.objects.all()
-        serializer = StudentSerializer(students, many = True)
+    #     students = Student.objects.all()
+    #     serializer = StudentSerializer(students, many = True)
 
-        return Response(serializer.data)
+    #     return Response(serializer.data)
+    
+    def get_queryset(self):
+        date_joined = self.request.query_params.get('date_joined')
+        # queryset = Student.objects.all()
+        if date_joined:
+            queryset = Student.objects.filter(date_joined=date_joined)
+        else:
+            queryset = Student.objects.all()
+
+        return queryset
     
     def post(self, request, *args, **kwargs):
 
