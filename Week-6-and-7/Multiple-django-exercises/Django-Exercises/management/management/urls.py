@@ -16,19 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from management_app.views import (DepartmentListAPIView, DepartmentCreateAPIView, EmployeeListAPIView, EmployeeCreateAPIView, ProjectRetrieveAPIView,
-ProjectUpdateAPIView, ProjectDestroyAPIView, TaskRetrieveAPIView, TaskUpdateAPIView, TaskDestroyAPIView)
+from management_app.views import (DepartmentListAPIView, DepartmentCreateAPIView, DepartmentRetrieveAPIView, EmployeeListAPIView, EmployeeCreateAPIView, EmployeeRetrieveAPIView, ProjectListAPIView, ProjectRetrieveAPIView,
+ProjectUpdateAPIView, ProjectDestroyAPIView, TaskListAPIView, TaskRetrieveAPIView, TaskUpdateAPIView, TaskDestroyAPIView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('departments/', DepartmentListAPIView.as_view(), name = 'departments'),
     path('departments/create', DepartmentCreateAPIView.as_view(), name = 'create_department'),
+    path('departments/retrieve/<int:pk>', DepartmentRetrieveAPIView.as_view(), name = 'department-detail'),
     path('employees/', EmployeeListAPIView.as_view(), name = 'employees'),
     path('employees/create', EmployeeCreateAPIView.as_view(), name = 'create_employee'),
-    path('projects/retrieve/<int:pk>', ProjectRetrieveAPIView.as_view(), name = 'retrieve_project'),
+    path('employees/retrieve/<int:pk>', EmployeeRetrieveAPIView.as_view(), name = 'employee-detail'),
+    path('projects/', ProjectListAPIView.as_view(), name = 'projects'),
+    path('projects/retrieve/<int:pk>', ProjectRetrieveAPIView.as_view(), name = 'project-detail'),
     path('projects/update/<int:pk>', ProjectUpdateAPIView.as_view(), name = 'update_project'),
     path('projects/delete/<int:pk>', ProjectDestroyAPIView.as_view(), name = 'delete_project'),
-    path('tasks/retrieve/<int:pk>', TaskRetrieveAPIView.as_view(), name = 'retrieve_task'),
+    path('tasks/', TaskListAPIView.as_view(), name = 'tasks'),
+    path('tasks/retrieve/<int:pk>', TaskRetrieveAPIView.as_view(), name = 'task-detail'),
     path('tasks/update/<int:pk>', TaskUpdateAPIView.as_view(), name = 'update_task'),
     path('tasks/delete/<int:pk>', TaskDestroyAPIView.as_view(), name = 'delete_task'),
 ]
