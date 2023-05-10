@@ -68,10 +68,10 @@ class Card(models.Model):
                 for i in range(len(v)):
                     if v[i] != None and v[i].health < v[i].health_base:
                         v[i].health += 1
-                    if board == player_board:
-                        human_player.health += 1
-                    else:
-                        opponent_player.health += 1
+                    # if board == player_board:
+                    #     human_player.health += 1
+                    # else:
+                    #     opponent_player.health += 1
 
         
         

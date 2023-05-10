@@ -8,6 +8,9 @@
 </head>
 <body>
     {% include 'partials/navbar.html' %}
+    {% if user.is_authenticated %}
+    <h2>All the new films:</h2>
+    {% endif %}
     <ul class="list-group">
     {% for film in films %}
         <li class="list-group-item">{{ film.title }} | {{ film.release_date }} | {{ film.created_in_country }} | 
