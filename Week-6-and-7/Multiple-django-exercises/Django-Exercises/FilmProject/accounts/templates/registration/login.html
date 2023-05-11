@@ -9,6 +9,7 @@
 <body>
     {% if form.errors %}
     <p>{{ form.errors }}</p>
+    <p>{{ form.cleaned_data }}</p>
     {% endif %}
 
     <form method="POST" action="{% url 'login' %}">

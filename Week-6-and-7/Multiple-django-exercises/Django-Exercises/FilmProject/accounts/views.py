@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .forms import SignUpForm
-from django.views.generic import CreateView, DetailView
+from .forms import SignUpForm, UserProfileForm
+from django.views.generic import CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+# from FilmProject.settings import AUTH_USER_MODEL
 
 # Create your views here.
 

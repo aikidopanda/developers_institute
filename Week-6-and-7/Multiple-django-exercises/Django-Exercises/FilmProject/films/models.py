@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Country(models.Model):
@@ -30,3 +31,28 @@ class Film(models.Model):
 
     def __str__(self):
         return f'{self.title} | {self.release_date}'
+    
+
+class Comment(models.Model):
+    film = models.ForeignKey(Film, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    def __str__(self):
+        return f'Comment | Author: {self.author.username} | film: {self.film.title}'
+    
+
+class Rating(models.Model):
+    CHOICES = (
+        (1, '⭐'),
+        (2, '⭐⭐'),
+        (3, '⭐⭐⭐'),
+        (4, '⭐⭐⭐⭐'),
+        (5, '⭐⭐⭐⭐⭐')
+    )
+
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    film = models.ForeignKey(Film, on_delete=models.CASCADE, related_name='ratings')
+    rating = models.IntegerField(choices=CHOICES, default=1)
+
+    def __str__(self):
+        return f"{self.user}, {self.film.title}, {self.rating}"

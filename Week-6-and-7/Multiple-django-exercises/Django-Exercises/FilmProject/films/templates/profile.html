@@ -8,14 +8,13 @@
 </head>
 <body>
     {% include 'partials/navbar.html' %}
-    {%block title%} Profile {%endblock title%}
     {%block content%}
-    <h1>Profile</h1>
+    <h1>{{ request.user.username }}'s Profile</h1>
     Hello
-    <ul>
-        <li>Username {{request.user.username}}</li>
-        <li>First name {{request.user.first_name}}</li>
-        <li>Last name {{request.user.last_name}}</li>
+    <ul style="list-style: none;">
+        <li>Username: {{request.user.username}}</li>
+        <li>First name: {{request.user.first_name}}</li>
+        <li>Last name: {{request.user.last_name}}</li>
     </ul>
     <a href="{%url 'logout'%}">logout</a>
     {%endblock%} 
