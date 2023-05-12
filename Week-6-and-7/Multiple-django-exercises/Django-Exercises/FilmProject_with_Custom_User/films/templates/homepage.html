@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'partials/navbar.html' %}
+    {% if user.is_authenticated %}
+    <h2>All the new films:</h2>
+    {% endif %}
+    <ul class="list-group">
+        {% for film, comment_form, comments, rating_form, ratings in films_comments %}
+        <li class="list-group-item">{{ film.title }} | {{ film.release_date }} | {{ film.created_in_country }} | 
+            {% for director in film.director.all %}
+            {{ director }}
+            {% endfor %} |
+            {% for category in film.category.all %}
+            {{ category }}
+            {% endfor %}
+        </li>
+        <h4>comments:</h4>
+        {%if comments%}
+          {% for comment in comments %}
+          <li>{{ comment.content }}</li>
+          {% endfor %}
+        {%endif%}
+        <h4>rating:</h4>
+        {%if ratings%}
+          {% for rating in ratings %}
+          <li>{{ rating.rating }}</li>
+          {% endfor %}
+        {%endif%}
+        <br>
+        <form method="post" action="{%url 'rating' film.pk%}">
+        <br>
+        {%csrf_token%}
+        {{rating_form.as_p}}
+        <button type="submit">Post</button>
+        </form>
+        <form method="post" action="{%url 'comment' film.pk%}">
+          <br>
+          {%csrf_token%}
+          {{comment_form.as_p}}
+          <button type="submit">Post</button>
+        </form>
+        {% if user.is_authenticated and user.is_superuser %}
+          <p><a href="{% url 'deletefilm' film.pk %}">Delete</a></p>
+        {%endif%}
+    {% endfor %}
+    </ul>
+    {% include 'partials/base.html' %}   
+</body>
+</html>

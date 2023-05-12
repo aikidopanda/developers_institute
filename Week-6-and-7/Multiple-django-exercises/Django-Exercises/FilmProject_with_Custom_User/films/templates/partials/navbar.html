@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% if user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" style = "margin-right: 20px;">IMDI</div>
+          <div class="navbar-nav" style = "margin-right: 20px;">Home</div>
+          <div class="navbar-nav" style = "margin-right: 20px;">Profile</div>
+          {% if user.is_superuser %}
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" style = "margin-right: 20px;" href="../addfilm">Add new film</a>
+            <a class="nav-item nav-link" style = "margin-right: 20px;" href="../adddirector">Add new director</a>
+          </div>
+          {% endif %}
+        </div>
+    {% else %}
+    <ul class ="navbar-nav me-auto mb-2 mb-lg-0" style = "list-style: none;">
+      <li class="nav-item mr-2" style = "margin-right: 20px;">IMDI</li>
+      <li class="nav-item mr-2" style = "margin-right: 20px;">Welcome to website</li>
+      <li class="nav-item mr-2" style = "margin-right: 20px;">Sign up</li>
+      <li class="nav-item mr-2" style = "margin-right: 20px;">Login</li>
+    </ul>
+    {% endif %}
+    </nav>
+    {% endblock %}
+</body>
+</html>
