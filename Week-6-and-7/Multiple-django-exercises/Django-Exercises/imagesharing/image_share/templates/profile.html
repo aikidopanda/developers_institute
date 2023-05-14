@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>{{ request.user.username }}'s Profile</h1>
+    Hello
+    <ul style="list-style: none;">
+        <li>Username: {{request.user.username}}</li>
+        <li>Images: {{request.user.profile.images}}</li>
+    </ul>
+    <a href="{%url 'logout'%}">logout</a>
+</body>
+</html>
