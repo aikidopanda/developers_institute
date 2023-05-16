@@ -98,7 +98,7 @@ const details = {
     is: 'Rudolf',
     the: 'raindeer'
   }
-let result_string
+let result_string = ''
 for (key in details){
     result_string = result_string + ' ' + key + ' ' + details[key]
 }
@@ -107,8 +107,8 @@ console.log(result_string)
 //Exercise 7
 const names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
 names.sort()
-let societyname
+let societyname = ''
 for (let i=0; i < names.length; i++){
     societyname = societyname + names[i][0]
 }
-console.log(societyname) // it prints undefinedABJKPS since it logs the variable when I declare it, but technically the task is done
+console.log(societyname)
