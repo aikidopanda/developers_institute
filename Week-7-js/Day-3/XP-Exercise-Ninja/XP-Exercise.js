@@ -1,3 +1,4 @@
+//Exercise 1
 let fighter_1 = {
     FullName: 'Mike Tyson',
     Mass: 98,
@@ -27,3 +28,20 @@ function BMI_compare(person1, person2){
 }
 
 BMI_compare(fighter_1,fighter_2)
+
+//Exercise 2
+function find_avg(gradesList){
+    let sum = gradesList.reduce(function(a, b){
+        return a + b;
+      })
+    return sum/gradesList.length
+}
+
+grades = [90, 87, 75, 53, 46]
+avg = find_avg(grades)
+if (avg >= 65){
+    console.log(`You have passed. Your average score is ${avg}`)
+}
+else{
+    console.log(`Your average score is ${avg}. You have not passed`)
+}
