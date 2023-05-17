@@ -70,18 +70,64 @@ function changeEnough(itemPrice, amountOfChange){
 console.log(changeEnough(5,[15,13,24,12]))
 
 //Exercise 4
-// function hotelcost(){
-//     let userInput = prompt('How many nights would you like to stay in the hotel?')
-//     if (isNaN(userInput) || userInput == ''){
-//         return hotelcost()
-//     }
-//     else{
-//         let totalprice = userInput * 140
-//         return totalprice
-//     }
-// }
+function hotelcost(){
+    let userInput = prompt('How many nights would you like to stay in the hotel?')
+    if (isNaN(userInput) || userInput == ''){
+        return hotelcost()
+    }
+    else{
+        let totalprice = userInput * 140
+        return totalprice
+    }
+}
 // let totalprice = hotelcost()
 // console.log(`The total cost will be ${totalprice} $`)
+
+function planeRideCost(){
+let destination = prompt('What city are you going to?')
+if (typeof(destination) != 'string' || destination ==''){
+    return planeRideCost()
+}
+switch(destination){
+    case 'London':
+        return 183;
+        break;
+    case 'Paris':
+        return 220;
+        break;
+    default:
+        return 300
+}
+}
+// let price = planeRideCost()
+// console.log(`The total price of your ride will be ${price} $`)
+
+function rentalCarCost(){
+    let basecost = 40
+    let rentalPeriod = prompt('How long will you need the rented car?')
+    if (isNaN(rentalPeriod) || rentalPeriod == ''){
+        return rentalCarCost()
+    }
+    else{
+        cost = basecost * rentalPeriod
+        if (rentalPeriod > 10){
+            cost = cost * 0.95
+        }
+        return cost 
+    }
+}
+// let finalcost = rentalCarCost()
+// console.log(finalcost)
+
+function totalVacationCost(){
+    let hotel = hotelcost()
+    let plane = planeRideCost()
+    let car = rentalCarCost()
+    let total = hotel + plane + car
+    return `Hotel cost: ${hotel}, Plane ride cost: ${plane}, Car rent cost: ${car}. Total cost is ${total}.`
+}
+console.log(totalVacationCost())
+
 
 
 
