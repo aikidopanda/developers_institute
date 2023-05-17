@@ -1,0 +1,10 @@
+//Exercise 6
+let div = document.getElementById("navBar")
+div.setAttribute("id", "socialNetworkNavigation")
+let new_list_item = document.createElement("li")
+let newtext = document.createTextNode("Logout")
+new_list_item.append(newtext)
+let ul = document.querySelector("ul")
+ul.append(new_list_item)
+console.log(ul.firstElementChild.textContent)
+console.log(ul.lastElementChild.textContent)
