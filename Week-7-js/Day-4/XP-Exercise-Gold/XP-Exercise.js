@@ -22,14 +22,29 @@ console.log(abbrevName('Alexey Soroker'))
 
 //Exercise 3
 function swapper(string){
+    let newstr = ''
     for (let char in string){
         if (string[char] == string[char].toUpperCase()){
-            string[char] = string[char].toLowerCase()
+            newstr = newstr + string[char].toLowerCase()
         }
         else{
-            string[char] = string[char].toUpperCase()
+            newstr = newstr + string[char].toUpperCase()
         }
     }
-    return string
+    return newstr
 }
 console.log(swapper('Hello World'))
+
+//Exercise 4
+function isOmnipresent(array,value){
+    for (let i=0; i<array.length; i++){
+        if (!array[i].includes(value)){
+            return false
+        }
+        return true
+    }
+}
+let myArr = [[3,4],[4,8],[4,5],[4,9]]
+console.log(isOmnipresent(myArr,4))
+console.log(isOmnipresent(myArr,5))
+console.log(isOmnipresent(myArr,2))
