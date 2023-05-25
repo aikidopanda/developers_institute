@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-image: url('background-texture.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 120vh;
+}
+img{
+    object-fit: contain;
+    object-position: center;
+    width: 12.5vw;
+}
+nav{
+    background-color: lightblue;
+    height: 7.5vh;
+    font-family: 'UNITED BRK', sans-serif;
+    border: 1px solid darkblue;
+    display: flex;
+}
+input{
+    margin-left: 2vw;
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.robot{
+    /* background-image: url('robot-div-texture.jpg'); */
+    background-color: gold;
+    background-size: cover;
+    width: 12.5vw;
+    margin-top: 2vh;
+    margin-left:1.5vw;
+    margin-right: 1.5vw;
+    border: 1px solid black;
+}
+#container-main{
+    width: 80vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+}
+.name, .email{
+    text-align: center;
+    font-family: 'DK Woolwich', sans-serif;
+    color: darkgreen;
+}
+.email{
+    font-size: 2vh;   
+}
+.name{
+    font-size: 3vh;
+}
+#title{
+    font-size: 5vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5vw;
+}
+
+@media screen and (max-width: 1000px){
+    #container-main{
+        width: 100vw;
+        grid-template-columns: repeat(3, auto);
+    }
+    .robot, img{
+        width: 25vw;
+    }
+    .email{
+        font-size: 1vh;
+    }
+    .name{
+        font-size: 1.5vh;
+    }
+}
