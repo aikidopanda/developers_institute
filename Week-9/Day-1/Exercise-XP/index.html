@@ -1,0 +1,43 @@
+<!-- Exercise 1 -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="GET" action="index.html" id="myform">
+        <p>Name</p>
+        <input type="text" name="name">
+        <p>Comments</p>
+        <textarea rows="5" name="comments" form="myform"></textarea><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html> -->
+
+<!-- Exercise 1: The form results are shown in the browser address field and in the 'network'->payload section if we inspect the page -->
+
+<!-- Exercise 2 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="index.html" id="myform">
+        <p>Name</p>
+        <input type="text" name="name">
+        <p>Comments</p>
+        <textarea rows="5" name="comments" form="myform"></textarea><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+<script src="script.js" charset="UTF-8"></script>
+</html>
+<!-- Exercise 2: In this case form results will be only in network->payload, and wont appear in the browser field -->
