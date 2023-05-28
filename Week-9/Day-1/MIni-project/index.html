@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="quote-window">
+    </section>
+    <button id="generate">Generate quote!</button>
+    <section id="additional-info">
+        <button id="length-space">Quote length(with space)</button>
+        <button id="length-no-space">Quote length(without space)</button>
+        <button id="words-num">Quote words num</button>
+        <button id="like">Like</button>
+    </section>
+    <form id="search">
+        <input name="searchfield">
+        <input type="submit" id="search" value="Search by author">
+    </form>   
+    <form id="add-quote">
+        <p>Author: <input name="author"></p>
+        <p>Quote: <textarea name="quote" form="add-quote" rows="5"></textarea></p>
+        <p><input type="submit" value="Add quote" id="submit-quote"></p>
+    </form>
+    <script src="script.js" charset="utf-8"></script>
+</body>
+</html>
