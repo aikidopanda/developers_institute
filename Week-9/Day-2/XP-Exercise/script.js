@@ -19,11 +19,9 @@ compareToTen(8)
 //Exercise 2
 let myPromise = new Promise( function(resolve,reject){
     if (true){
-        resolve(
-            setTimeout(() => {
-                console.log('Success!')
-            },'4000')
-        )
+        setTimeout(()=> {
+            resolve('Success!')
+        },'4000')
     }
     else{ // just a placeholder in this case
         reject(
