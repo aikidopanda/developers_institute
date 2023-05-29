@@ -50,3 +50,7 @@ let newPromise = new Promise( function(resolve,reject){
 })
 .then(result=>console.log(result))
 .catch(error=>console.log(error))
+//another way
+let myVar1 = Promise.resolve(3)
+let myVar2 = Promise.reject('boo')
+console.log(myVar1, myVar2)
