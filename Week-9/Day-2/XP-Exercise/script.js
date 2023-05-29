@@ -32,6 +32,12 @@ let myPromise = new Promise( function(resolve,reject){
 myPromise.then(result=>console.log(result))
 myPromise.catch(error=>console.log(error))
 
+//shorter way
+let myRes
+setTimeout(()=> {
+    myRes = Promise.resolve('Success!'); myRes.then(result=>console.log(result))
+},'4000')
+
 //Exercise 3
 let switcher = false // for testing purpose
 let newPromise = new Promise( function(resolve,reject){
