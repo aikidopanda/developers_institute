@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star wars app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Star wars</h1>
+    <h2>On this website you can search information about characters, spaceships, planets and inother parts of Star Wars movie universe</h2>
+    <form>
+        <p><label for="selection">Select the category to search into:</label></p>
+        <select name="selection">
+            <option value="people">Characters</option>
+            <option value="planets">Planets</option>
+            <option value="starships">Starships</option>
+        </select>
+        <br><br>
+        <input name="inputtext" id="inputtext" placeholder="Enter the name of your search, e.g. 'Darth Vader'" size="50">
+        <br><br>
+        <input type="submit" id="button" value="Search!">
+        <div class="info-container"></div>
+    </form>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/0bc76066b0.js" crossorigin="anonymous"></script>
+</body>
+</html>
