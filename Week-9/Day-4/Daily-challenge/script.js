@@ -41,8 +41,6 @@ async function exchange(event){
     newPar.innerText = `You will get ${amountNew} ${curTo} for ${amount} ${curFrom}`
     sectionRes = document.getElementById('results')
     sectionRes.appendChild(newPar)
-
-    console.log(json)
 }
 
 let btn = document.querySelector('button')

@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('background.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1,
+h2 {
+    background-color: rgba(252, 156, 0, 0.25);
+    text-align: center;
+    margin: 0;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+h1 {
+    font-family: Righteous;
+    font-size: 8vh;
+    color: aliceblue;
+}
+
+h2 {
+    font-family: Satisfy;
+    font-size: 6vh;
+    color: rgb(88, 27, 27);
+}
+
+.question,
+#answer,
+#timer {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
+    margin-top: 1.5%;
+
+}
+
+.question,
+#answer {
+    background-image: radial-gradient(gold 30%, orange);
+    /* background-color: gold; */
+    color: darkblue;
+    width: 50vw;
+    font-family: Varela Round;
+    font-size: 3vh;
+    border: 1px solid maroon;
+    text-align: justify;
+}
+
+#greeting{
+    text-align: center;
+}
+
+#checked {
+    text-align: center;
+    background-image: radial-gradient(maroon 60%, gold);
+    /* background-color: maroon; */
+    color: gold;
+    width: 40%;
+    margin-left: auto;
+}
+
+#timer {
+    background-image: radial-gradient(maroon 60%, gold);
+    /* background-color: maroon; */
+    color: gold;
+    font-size: 3vh;
+    text-align: center;
+    width: 15vw;
+    border: 1px solid gold;
+    border-radius: 5%;
+    font-family: Rubik;
+}
+
+#answer-input {
+    border-radius: 5%;
+    font-size: 3vh;
+    font-family: Varela Round;
+}
+
+#answer-input:focus{
+    background-color: yellow;
+    color: rgb(88, 27, 27);
+}
+
+#submit {
+    border-radius: 5%;
+    font-size: 3vh;
+    font-family: Varela Round;
+    background-image: radial-gradient(rgb(13, 9, 62) 80%, lightblue);
+    /* background-color: rgb(13, 9, 62); */
+    color: white;
+    margin-top:1.5%;
+    margin-bottom: 3%;
+    padding: 2% 5%;
+}
+
+#submit:hover {
+    color: gold;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* media queries */
+
+@media screen and (max-width: 950px){
+    body{
+        height: 100vh;
+    }
+    h1{
+        font-size: 6vh;
+    }
+    h2{
+        font-size: 4vh;
+    }
+    .question, #answer{
+        width: 100%;
+    }
+    #timer{
+        font-size: 3vh;
+        margin-top: 15vh;
+        width:50%;
+    }
+}
+

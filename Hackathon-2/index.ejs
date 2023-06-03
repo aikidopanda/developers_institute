@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>History Jeopardy-Based Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fira+Sans:wght@500&family=Open+Sans:wght@500&family=Poppins:wght@200;300&family=Righteous&family=Roboto:ital,wght@0,300;0,500;1,100&family=Rubik&family=Satisfy&family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>History Jeopardy-Based Game</h1>
+    <h2>Try your world history knowledge by answering our questions within time limit!</h2>
+    <div id="timer"></div>
+    <section class="question">
+        <%= questionDisp %>
+    </section>
+    <section id="answer">
+        <form>
+            <table>
+                <tr><td><input id="answer-input" name="answer" size="20"></td></tr>
+                <tr><td><input type = "submit" id="submit" name="submit" value="Send"></td></tr>
+            </table>
+        </form>
+        <p id="checked"><%= result %></p>
+    </section>
+    <script src="client.js" charset="UTF-8" ></script>
+</body>
+</html>
