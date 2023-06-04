@@ -3,15 +3,22 @@ const largeNumber = 356
 function getDate(){
     const currentDate = new Date(); 
 
-    let year = currentDate.getFullYear();
-    let month = currentDate.getMonth() + 1; 
-    let day = currentDate.getDate();
+    let yearCur = currentDate.getFullYear();
+    let monthCur = currentDate.getMonth() + 1; 
+    let dayCur = currentDate.getDate();
 
-    let hours = currentDate.getHours();
-    let minutes = currentDate.getMinutes();
-    let seconds = currentDate.getSeconds();
+    let hoursCur = currentDate.getHours();
+    let minutesCur = currentDate.getMinutes();
+    let secondsCur = currentDate.getSeconds();
 
-    return [year, month, day, hours, minutes, seconds]
+    return {
+        year: yearCur,
+        month: monthCur,
+        day: dayCur,
+        hour: hoursCur,
+        minute: minutesCur,
+        second: secondsCur
+    }
 }
 
 module.exports = { largeNumber, getDate }
