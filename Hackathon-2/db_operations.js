@@ -4,8 +4,6 @@
 // to add new questions to the database, edit questions and answers array and call populateDatabase() function. call syncModels() first to prevent getting the same question multiple times
 // then run the file -> node db_operations.js
 
-const fs = require('node:fs') // importing necessary tools
-const ejs = require('ejs')
 const { Client } = require('pg')
 const { Sequelize } = require('sequelize');
 
@@ -46,9 +44,6 @@ const Score = sequelize.define('Score', {
     type: Sequelize.FLOAT
   }
 });
-
-const hostname = '127.0.0.1'
-const port = 3000
 
 async function syncModels() {
   await sequelize.sync({ force: true });
@@ -91,8 +86,8 @@ let questions = [
     'The 1st World War, also known as Great War, started when Austria-Hungary declared war on...(write the name of this country)',
     'These two former Soviet republics, despite being the integral part of Soviet Union, had their own vote right at the United Nations Assembly. Write their names separated by comma.',
     'In 1966 he became the first Israeli who won Nobel Prize in literature.',
-    'This document of British diplomacy de-facto became one of the most important steps of re-creation Jewish state in Palestine',
-    'This journalist and politician in 1897 founded the World Zionist Organization. In almost all modern Israeli cities there is a street named after him.',
+    'This document of British diplomacy de-facto became one of the most important milestones of re-creation Jewish state in Palestine',
+    'This journalist and politician in 1897 founded the World Zionist Organization. Almost every modern Israeli city or town has a street named after him.',
     'This religion, founded in the 7th century A.D., is considered to be the youngest of so-called Universal Religions.',
     'The war between aristocratic houses of Yorks and Lancasters in medieval England, which inspired George Martin for writing his Game of Thrones series, was given quite poetical name. Write this name.',
     'This was a name of Dutch-origin colonists in South Africa, whose republics were crushed by the British army in the early 20th century.',

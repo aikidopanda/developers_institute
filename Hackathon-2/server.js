@@ -1,13 +1,11 @@
 const fs = require('node:fs') // importing necessary tools
 const ejs = require('ejs')
-const { Client } = require('pg')
-const { Sequelize } = require('sequelize');
 const express = require('express')
 const app = express()
 const db = require('./db_operations')
 
 let timer = 150 //creating a countdown timer: you can set any value but it will affect the difficulty of the game
-// for medium difficulty i recommend to set timer = total number of questions * 5
+// for medium difficulty I recommend to set timer = total number of questions * 5
 let score = 0 //every time player gives a correct answer his/her score increases
 let playerName
 let displayed = "Let's start!" // dynamic message displayed to player, changing during the game
@@ -78,8 +76,8 @@ const server = app.get('/game', (request, response) => {
   let checkedResult
   fs.readFile('index.ejs', 'utf8', (err, template) => {
     if (err) {
-      console.error('Error reading template:', err);
-      return;
+      console.error('Error reading template:', err)
+      return
     }
 
     let userAnswer = request.query.answer
@@ -117,8 +115,6 @@ const server = app.get('/game', (request, response) => {
     let renderedHTML = ejs.render(template, data);
     response.end(renderedHTML)
   });
-
-  // response.writeHead(200, { "Content-Type": "text/html" })
 })
 
 if (server) {
@@ -171,13 +167,13 @@ function finalScore(score){
   let questionsTotal = questionsArray.length
   let scoreFinal = score/questionsTotal * 100 
   let msg = `You answered ${score} questions of ${questionsTotal}. `
-  if (scoreFinal > 0.75){
+  if (scoreFinal > 75){
     msg += 'Your knowledge of world history is truly great! I suppose you have studied humanities in university. Or just read a lot of books:)'
   }
-  else if (scoreFinal > 0.5){
+  else if (scoreFinal > 50){
     msg += 'You definitely have a good erudition in history. Probably you didnt study it professionally, but you had strong enthusiam to it'
   }
-  else if (scoreFinal > 0.25){
+  else if (scoreFinal > 25){
     msg += 'You might have read historical novels or watched history-related films. Or you havent forgot your school knowledge yet:)'
   }
   else{
