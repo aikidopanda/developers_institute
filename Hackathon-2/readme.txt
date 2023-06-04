@@ -18,7 +18,7 @@ Important:
 2. Some questions have multiple correct answers, you can write any of them.
 3. The arabic and roman numbers are NOT the same. You should write roman numbers with monarchs' names (as its conventional) and arabic numbers in all other cases.
 
-If I continie to work on this website, i'll add the GUI for adding questions and other user-functions.
+If I continue to work on this website, i'll add the GUI for adding questions and other user-friendly functions.
 
 
 
