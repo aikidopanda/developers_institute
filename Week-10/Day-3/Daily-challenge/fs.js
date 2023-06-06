@@ -17,9 +17,6 @@ fs.readFile('RightLeft.txt', 'utf-8', (err, data) => {
             checked = true
         }
     }
-
-
-
     console.log(`Final position in the end: ${position} to the right`)
 })
 
