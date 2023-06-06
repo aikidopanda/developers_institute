@@ -5,6 +5,8 @@ fs.readFile('sample.txt', 'utf-8', (err, data) => {
 })
 
 //Exercise 2
+
+//creating
 fs.writeFile('data.txt', 'Sample string', (err)  => {
     if (err){
         throw err
@@ -13,6 +15,7 @@ fs.writeFile('data.txt', 'Sample string', (err)  => {
 }
 )
 
+//appending
 fs.appendFile('data.txt', '\nOne more sample string', (err)  => {
     if (err){
         throw err
@@ -21,12 +24,13 @@ fs.appendFile('data.txt', '\nOne more sample string', (err)  => {
 }
 )
 
-fs.unlink('data.txt', (err)  => {
-    if (err){
-        throw err
-    }
-    console.log('File deleted')
-}
-)
+//deleting
+// fs.unlink('data.txt', (err)  => 
+//     if (err){
+//         throw err
+//     }
+//     console.log('File was deleted')
+// }
+// )
 
 
