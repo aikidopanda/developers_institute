@@ -22,8 +22,8 @@ app.get('/aboutme/:hobby', (req,res) => {
 })
 
 app.get('/pic/', (req,res) => {
-    let pictureSrc = '../public/some_cat_image.webp'
-    res.send(`<img src=${pictureSrc} width="300">`) // I dont understand how to send images with this command, always get the path error
+    let pictureSrc = __dirname + '/public/some_cat_image.webp'
+    res.send(`<img src="/public/some_cat_image.webp" width="300">`) // I dont understand how to send images with this command, always get the path error
 })
 
 app.get('/form', (req,res) => {
@@ -31,7 +31,6 @@ app.get('/form', (req,res) => {
 })
 
 app.post('/form', urlencodedParser, (req,res) => {
-    console.log(req.body)
     email = req.body.email
     msg = req.body.msg
     res.send(`
