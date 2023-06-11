@@ -9,7 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 class SampleCarousel extends Component {
   render() {
       return (
-          <Carousel>
+          <Carousel width="40%">
               <div>
                   <img src="Hongkong.jpg" alt="Hongkong" />
                   <p className="legend">Hongkong</p>
