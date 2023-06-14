@@ -20,8 +20,16 @@ class FormComponent extends React.Component{
   }
 
   handleChange = (event) => {
-    const value = (event.target.type == 'checkbox') ? event.target.checked : event.target.value
-    this.setState({[event.target.name]:event.target.value})
+    // const value = (event.target.type == 'checkbox') ? event.target.checked : event.target.value
+    if (event.target.type == 'checkbox' && event.target.checked==true){
+      this.setState({[event.target.name]:event.target.name})
+    }
+    else if(event.target.type == 'checkbox' && event.target.checked==false){
+      this.setState({[event.target.name]:''})
+    }
+    else{
+      this.setState({[event.target.name]:event.target.value})
+    }
   }
 
   changeDestination = (event) => {
@@ -53,7 +61,7 @@ class FormComponent extends React.Component{
             {/* <tr><td align='left'><input type='radio' name='gender' value='male'></input>Male</td></tr>
             <tr><td align='left'><input type='radio' name='gender' value='female'></input>Female</td></tr> */}
             <tr><td align='left'><label htmlFor="destination">Choose your destination: </label><select name='destination' onChange={this.handleChange}>
-              <option value='USA'>USA</option>
+              <option value='USA' selected>USA</option>
               <option value='Israel'>Israel</option>
               <option value='UK'>UK</option>
               <option value='Russia'>Russia</option>
@@ -69,11 +77,12 @@ class FormComponent extends React.Component{
         </form>
         <div id='form-result'>
           <h4>Form results: </h4>
-          <p>First name: {fname}</p>
-          <p>Last name: {lname}</p>
-          <p>Age: {age}</p>
-          <p>Destination: {destination}</p>
-          <p>Food restrictions: {nuts}, {lactose}, {vegan}</p>
+          <p>First name: {this.state.fname}</p>
+          <p>Last name: {this.state.lname}</p>
+          <p>Gender: {this.state.gender}</p>
+          <p>Age: {this.state.age}</p>
+          <p>Destination: {this.state.destination}</p>
+          <p>Food restrictions: {this.state.nuts} | {this.state.lactose} | {this.state.vegan}</p>
         </div>
       </>
     )
