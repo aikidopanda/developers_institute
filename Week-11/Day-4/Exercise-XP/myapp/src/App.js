@@ -187,7 +187,8 @@ async function fetcher(){
     },
     body: JSON.stringify(requestBody)
   })
-  console.log(response) 
+  const data = await response.json();
+  console.log(data) 
   }
   catch(error){
     console.log(error)
@@ -200,10 +201,9 @@ function showData(){
 
 
 function App() {
-  fetcher()
   return (
     <>
-    <button onClick={showData}>Show Data</button>
+    <button onClick={fetcher}>Show Data</button>
     </> 
   );
 }

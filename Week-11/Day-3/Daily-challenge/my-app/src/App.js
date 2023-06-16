@@ -58,8 +58,6 @@ class FormComponent extends React.Component{
             <tr><td><input name='lname' size='50' placeholder='Last name' onChange={this.handleChange}/></td></tr>
             <tr><td><input name='age' size='50' placeholder='Age' onChange={this.handleChange}/></td></tr>
             <tr><td><div onChange={this.handleChange}> <input type='radio' name='gender' value='male'></input>Male <input type='radio' name='gender' value='female'></input>Female</div></td></tr>
-            {/* <tr><td align='left'><input type='radio' name='gender' value='male'></input>Male</td></tr>
-            <tr><td align='left'><input type='radio' name='gender' value='female'></input>Female</td></tr> */}
             <tr><td align='left'><label htmlFor="destination">Choose your destination: </label><select name='destination' onChange={this.handleChange}>
               <option value='USA' selected>USA</option>
               <option value='Israel'>Israel</option>
