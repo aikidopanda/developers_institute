@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import React from 'react'
-import Test from './components/test'
 // import { changePropOne } from './redux/actions';
 import Counter from './components/Counter';
 

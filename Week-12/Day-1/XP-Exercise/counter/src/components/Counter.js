@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { connect } from "react-redux";
 import { IncreaseCounter, DecreaseCounter } from "../redux/actions";
 
 
 const Counter = (props) => {
-    const [count, setCount] = useState(0)
     return(
         <>
             <button onClick={()=>props.increment()}>+</button>
