@@ -7,7 +7,10 @@ const initState = {
         {id: 3, title: 'Black Panther', releaseDate: '02-13-2018', rating: 7.4,},
         {id: 4, title: 'Avengers: Infinity War', releaseDate: '04-25-2018', rating: 8.3,},
         {id: 5, title: 'Guardians of the Galaxy', releaseDate: '07-30-2014', rating: 7.9,},
-    ]
+    ],
+    movie: {
+        
+    }
 }
 
 const moviesReducer = (state = initState, action = {}) => {
@@ -15,9 +18,7 @@ const moviesReducer = (state = initState, action = {}) => {
 }
 
 const initStateSelect = {
-    movie: {
-        
-    }
+    
 }
 
 const selectMovieReducer = (state = initStateSelect,action = {}) => {

@@ -38,7 +38,7 @@ class FormComponent extends React.Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const {fname, lname, age, gender, destination, nuts, lactose, vegan } = this.state
+    const {fname, lname, age, gender, destination, nuts, lactose, vegan} = this.state
     console.log(nuts)
     console.log(lactose)
     const nutsRestriction = nuts ? 'Food restriction: nuts' : ''
