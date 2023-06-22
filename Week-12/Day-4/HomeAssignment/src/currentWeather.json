@@ -1,0 +1,71 @@
+[
+    {
+        "LocalObservationDateTime": "2023-06-21T13:28:00+03:00", 
+        "EpochTime": 1687343280,
+        "WeatherText": "Sunny",
+        "WeatherIcon": 1,
+        "HasPrecipitation": false,
+        "PrecipitationType": null,
+        "IsDayTime": true,
+        "Temperature": {
+            "Metric": {
+                "Value": 28.2,
+                "Unit": "C",
+                "UnitType": 17
+            },
+            "Imperial": {
+                "Value": 83.0,
+                "Unit": "F",
+                "UnitType": 18
+            }
+        },
+        "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/current-weather/215793?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/current-weather/215793?lang=en-us"
+    },
+    {
+        "LocalObservationDateTime": "2023-06-21T13:33:00+03:00",
+        "EpochTime": 1687343580,
+        "WeatherText": "Sunny",
+        "WeatherIcon": 1,
+        "HasPrecipitation": false,
+        "PrecipitationType": null,
+        "IsDayTime": true,
+        "Temperature": {
+            "Metric": {
+                "Value": 27.6,
+                "Unit": "C",
+                "UnitType": 17
+            },
+            "Imperial": {
+                "Value": 82.0,
+                "Unit": "F",
+                "UnitType": 18
+            }
+        },
+        "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/current-weather/213225?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/jerusalem/213225/current-weather/213225?lang=en-us"
+    },
+    {
+        "LocalObservationDateTime": "2023-06-21T13:33:00+03:00",
+        "EpochTime": 1687343580,
+        "WeatherText": "Sunny",
+        "WeatherIcon": 1,
+        "HasPrecipitation": false,
+        "PrecipitationType": null,
+        "IsDayTime": true,
+        "Temperature": {
+            "Metric": {
+                "Value": 18.9,
+                "Unit": "C",
+                "UnitType": 17
+            },
+            "Imperial": {
+                "Value": 66.0,
+                "Unit": "F",
+                "UnitType": 18
+            }
+        },
+        "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/current-weather/294021?lang=en-us",
+        "Link": "http://www.accuweather.com/en/ru/moscow/294021/current-weather/294021?lang=en-us"
+    }
+]

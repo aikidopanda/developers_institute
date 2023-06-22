@@ -11,10 +11,10 @@ class TransactionForm extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            accountNumber: '',
-            fsc: '',
-            name: '',
-            amount: ''
+            accountNumber: this.state.accountNumber || '',
+            fsc: this.state.fsc || '',
+            name: this.state.name || '',
+            amount: this.state.amount || ''
         }
     }
 
@@ -25,7 +25,18 @@ class TransactionForm extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.insertPayment(this.state)
+        if (this.props.currentIndex == -1){
+            this.props.insertPayment(this.state)
+        }
+        else{
+            this.props.updatePayment(this.state)
+        }
+        this.setState({
+            accountNumber: '',
+            fsc: '',
+            name: '',
+            amount: ''
+        })
     }
 
     handleEdit = (index) => {
@@ -58,7 +69,7 @@ class TransactionForm extends React.Component{
                     FSC: <input name='fsc' value={this.state.fsc} onChange={this.handleChange}/>
                     Name: <input name='name' value = {this.state.name} onChange={this.handleChange}/>
                     Amount: <input name='amount' value = {this.state.amount} onChange={this.handleChange}/>
-                    <input type='submit' value='Submit'/>
+                    <input type='submit' value={this.props.currentIndex == -1 ? 'Submit' : 'Update'}/>
                 </form>
 
                 <h2>List of transactions</h2>

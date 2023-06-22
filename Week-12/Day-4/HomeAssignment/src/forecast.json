@@ -1,0 +1,515 @@
+[
+    {
+    "Headline": {
+        "EffectiveDate": "2023-06-24T08:00:00+03:00",
+        "EffectiveEpochDate": 1687582800,
+        "Severity": 4,
+        "Text": "Pleasant this weekend",
+        "Category": "mild",
+        "EndDate": null,
+        "EndEpochDate": null,
+        "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?lang=en-us"
+    },
+    "DailyForecasts": [
+        {
+            "Date": "2023-06-21T07:00:00+03:00",
+            "EpochDate": 1687320000,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 73.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 84.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 34,
+                "IconPhrase": "Mostly clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=1&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=1&lang=en-us"
+        },
+        {
+            "Date": "2023-06-22T07:00:00+03:00",
+            "EpochDate": 1687406400,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 72.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 84.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 35,
+                "IconPhrase": "Partly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=2&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=2&lang=en-us"
+        },
+        {
+            "Date": "2023-06-23T07:00:00+03:00",
+            "EpochDate": 1687492800,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 74.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 86.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 38,
+                "IconPhrase": "Mostly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=3&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=3&lang=en-us"
+        },
+        {
+            "Date": "2023-06-24T07:00:00+03:00",
+            "EpochDate": 1687579200,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 73.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 86.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 34,
+                "IconPhrase": "Mostly clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=4&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=4&lang=en-us"
+        },
+        {
+            "Date": "2023-06-25T07:00:00+03:00",
+            "EpochDate": 1687665600,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 73.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 86.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 35,
+                "IconPhrase": "Partly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=5&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=5&lang=en-us"
+        }]
+    },
+{
+    "Headline": {
+        "EffectiveDate": "2023-06-23T14:00:00+03:00",
+        "EffectiveEpochDate": 1687518000,
+        "Severity": 7,
+        "Text": "Breezy Friday afternoon",
+        "Category": "wind",
+        "EndDate": "2023-06-23T20:00:00+03:00",
+        "EndEpochDate": 1687539600,
+        "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?lang=en-us"
+    },
+    "DailyForecasts": [
+        {
+            "Date": "2023-06-21T07:00:00+03:00",
+            "EpochDate": 1687320000,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 62.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 83.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=1&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=1&lang=en-us"
+        },
+        {
+            "Date": "2023-06-22T07:00:00+03:00",
+            "EpochDate": 1687406400,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 63.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 85.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=2&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=2&lang=en-us"
+        },
+        {
+            "Date": "2023-06-23T07:00:00+03:00",
+            "EpochDate": 1687492800,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 65.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 86.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=3&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=3&lang=en-us"
+        },
+        {
+            "Date": "2023-06-24T07:00:00+03:00",
+            "EpochDate": 1687579200,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 64.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 87.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=4&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=4&lang=en-us"
+        },
+        {
+            "Date": "2023-06-25T07:00:00+03:00",
+            "EpochDate": 1687665600,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 64.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 88.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 33,
+                "IconPhrase": "Clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=5&lang=en-us",
+            "Link": "http://www.accuweather.com/en/il/jerusalem/213225/daily-weather-forecast/213225?day=5&lang=en-us"
+        }
+    ]
+},
+{
+    "Headline": {
+        "EffectiveDate": "2023-06-23T07:00:00+03:00",
+        "EffectiveEpochDate": 1687492800,
+        "Severity": 4,
+        "Text": "Expect showers Friday",
+        "Category": "rain",
+        "EndDate": "2023-06-23T19:00:00+03:00",
+        "EndEpochDate": 1687536000,
+        "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?lang=en-us",
+        "Link": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?lang=en-us"
+    },
+    "DailyForecasts": [
+        {
+            "Date": "2023-06-21T07:00:00+03:00",
+            "EpochDate": 1687320000,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 53.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 73.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 35,
+                "IconPhrase": "Partly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=1&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=1&lang=en-us"
+        },
+        {
+            "Date": "2023-06-22T07:00:00+03:00",
+            "EpochDate": 1687406400,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 59.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 80.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 1,
+                "IconPhrase": "Sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 36,
+                "IconPhrase": "Intermittent clouds",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=2&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=2&lang=en-us"
+        },
+        {
+            "Date": "2023-06-23T07:00:00+03:00",
+            "EpochDate": 1687492800,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 61.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 74.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 13,
+                "IconPhrase": "Mostly cloudy w/ showers",
+                "HasPrecipitation": true,
+                "PrecipitationType": "Rain",
+                "PrecipitationIntensity": "Light"
+            },
+            "Night": {
+                "Icon": 34,
+                "IconPhrase": "Mostly clear",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=3&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=3&lang=en-us"
+        },
+        {
+            "Date": "2023-06-24T07:00:00+03:00",
+            "EpochDate": 1687579200,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 54.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 73.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 12,
+                "IconPhrase": "Showers",
+                "HasPrecipitation": true,
+                "PrecipitationType": "Rain",
+                "PrecipitationIntensity": "Light"
+            },
+            "Night": {
+                "Icon": 38,
+                "IconPhrase": "Mostly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=4&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=4&lang=en-us"
+        },
+        {
+            "Date": "2023-06-25T07:00:00+03:00",
+            "EpochDate": 1687665600,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 56.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                },
+                "Maximum": {
+                    "Value": 74.0,
+                    "Unit": "F",
+                    "UnitType": 18
+                }
+            },
+            "Day": {
+                "Icon": 7,
+                "IconPhrase": "Cloudy",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 7,
+                "IconPhrase": "Cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=5&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ru/moscow/294021/daily-weather-forecast/294021?day=5&lang=en-us"
+        }
+    ]
+}
+]
