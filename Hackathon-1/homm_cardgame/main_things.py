@@ -1,6 +1,5 @@
 import os
 import django
-import sys
 import random
 import math
 
@@ -24,8 +23,8 @@ turn_num = 0
 
 def start_game():
     # player_name = input('Enter the player name!')
-    human_player = Player(name='Player', health=20, games_won=0, gold=0, human=True)
-    computer_player = Player(name='Opponent', health=20, games_won=0, gold=0, human=False)
+    human_player = Player(name='Player', health=30, games_won=0, gold=0, human=True)
+    computer_player = Player(name='Opponent', health=30, games_won=0, gold=0, human=False)
     human_player.save()
     computer_player.save()
     create_factions()

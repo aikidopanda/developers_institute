@@ -50,8 +50,10 @@ class Card(models.Model):
             other.attacked(self)
         other.health -= self.attack
         self.health -= other.attack
-        other.save()
-        self.save()
+        if isinstance(other, models.Model):
+            other.save()
+        if isinstance(self, models.Model):
+            self.save()
 
     def attacked(self, other):
         other.health -= 1
@@ -61,8 +63,8 @@ class Card(models.Model):
             other = None
 
     def endofturn(self, board):
-        human_player = Player.objects.get(human=True)
-        opponent_player = Player.objects.get(human=False)
+        # human_player = Player.objects.get(human=True)
+        # opponent_player = Player.objects.get(human=False)
         if self.name in healer:
             for k,v in board.items():
                 for i in range(len(v)):

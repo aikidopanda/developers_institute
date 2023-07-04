@@ -5,6 +5,8 @@ import django
 import pygame
 from pygame.locals import *
 
+#card size: width 87 height 115. Pin it here since it will be standard for all cards
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'homm_cardgame.settings')
 django.setup()
 
@@ -96,6 +98,19 @@ def button_round(msg, x, y, radius, colour, status, action=None):
     screen.blit(textSurf, textRect)
 
 
+def cardtoplay(x, y, width, height, index):
+    global active_card
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+    screen.blit(pygame.image.load(
+            player_hand[index].image), (x, y))
+    if x + width > mouse[0] > x and y + height > mouse[1] > y:
+        if click[0] == 1 and human_player.gold >= player_hand[index].cost:
+            human_player.gold = human_player.gold - player_hand[index].cost
+            active_card = player_hand.pop(index)
+            human_player.save()
+
+
 def cardslot(x, y, width, height, colour, index):
     global active_card
     mouse = pygame.mouse.get_pos()
@@ -103,6 +118,7 @@ def cardslot(x, y, width, height, colour, index):
     if x + width > mouse[0] > x and y + height > mouse[1] > y:
         if click[0] == 1:
             player_board['front'][index] = active_card
+            active_card = None
     if player_board['front'][index] != None:
         screen.blit(pygame.image.load(
             player_board['front'][index].image), (x, y))
@@ -111,11 +127,13 @@ def cardslot(x, y, width, height, colour, index):
 
 
 def cardslot_rear(x, y, width, height, colour, index):
+    global active_card
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     if x + width > mouse[0] > x and y + height > mouse[1] > y:
         if click[0] == 1:
             player_board['rear'][index] = active_card
+            active_card = None
     if player_board['rear'][index] != None:
         screen.blit(pygame.image.load(
             player_board['rear'][index].image), (x, y))
@@ -164,10 +182,10 @@ def processing():
     opponent_turn()
     pygame.time.delay(1500)
     if player_first == True:
-        for line in ['front', 'rear']:
+        for line in ['rear', 'front']:
             attacking(player_board[line])
     else:
-        for line in ['front', 'rear']:
+        for line in ['rear', 'front']:
             attacking(opponent_board[line])
     for v in player_board.values():
         for i in range(len(v)):
@@ -300,6 +318,16 @@ def attacking(line):
         player_discard += discard2
         opponent_discard += discard1
 
+def cancel_card():
+    global active_card
+    human_player = Player.objects.get(human=True)
+    if active_card != None:
+        human_player.gold += active_card.cost
+        player_hand.append(active_card)
+        active_card = None
+        human_player.save()
+
+
 
 # Main menu
 while menurunning:
@@ -348,13 +376,20 @@ while gamerunning:
 
     largeText = pygame.font.Font('freesansbold.ttf', 40)
 
+    button("Active card",
+           10, 10, 150, 50, player_color, 'passive')
+    if active_card != None:
+        screen.blit(pygame.image.load(
+            active_card.image), (51.5,60))
+    button("Change",
+           10, 175, 150, 50, player_color, 'active', cancel_card)
 
     if human_player.health <= 0 or opponent_player.health <= 0:
         button(f"{status} Press Esc to quit",
-                          10, 825, 650, 75, player_color,'passive')
+                          10, 825, 800, 80, player_color,'passive')
     else:
-        button(f"Its turn {turn_num}. You are {action}. Press the card number to play it",
-                          10, 825, 650, 75, player_color,'passive')
+        button(f"Its turn {turn_num}. You are {action}. Press the card or its number on keyboard to play it",
+                          10, 825, 800, 80, player_color,'passive')
 
     for j in range(2):
         if j == 0:
@@ -388,17 +423,18 @@ while gamerunning:
                     button(f"{opponent_board['front'][i].attack} | {opponent_board['front'][i].health}",
                           873 + i * 100, 140 + j * 150, 87, 20, opponent_color, 'passive')
 
-    for i in range(len(player_hand)):
-        screen.blit(pygame.image.load(
-            player_hand[i].image), (20 + i * 100, 710))
+    for i, card in enumerate(player_hand):
+        cardtoplay(20 + i * 100, 710, 87, 115, i)
+        # screen.blit(pygame.image.load(
+        #     player_hand[i].image), (20 + i * 100, 710))
         button(f"{i + 1}",
                         43 + i * 100, 640, 43, 20, player_color, 'passive')
-        button(f"{player_hand[i].attack} | {player_hand[i].health}",
+        button(f"{card.attack} | {card.health}",
                         20 + i * 100, 690, 87, 20, opponent_color, 'passive')
-        button(f"Cost: {player_hand[i].cost}",
+        button(f"Cost: {card.cost}",
                         20 + i * 100, 660, 87, 20, maroon, 'passive')
 
-    button_round('End turn', 1060, 410, 75, red, 'active', processing)
+    button_round(f'End turn (Space)', 1060, 410, 95, red, 'active', processing)
 
     button_round(f'{human_player.health} HP', 1375, 660, 50, maroon, 'passive')
     button_round(f'{opponent_player.health} HP', 1375, 170, 50, maroon, 'passive')
@@ -413,8 +449,6 @@ while gamerunning:
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 menuexit()
-            # elif event.key == K_SPACE:
-            #     clicked = False
 
             if event.key == K_1 and player_hand[0] != None and human_player.gold >= player_hand[0].cost:
                 human_player.gold = human_player.gold - player_hand[0].cost
@@ -435,6 +469,9 @@ while gamerunning:
                 human_player.gold = human_player.gold - player_hand[5].cost
                 active_card = player_hand.pop(5)
             human_player.save()
+
+            if event.key == K_SPACE:
+                processing()
 
     pygame.display.flip()
     CLOCK.tick(FPS)
