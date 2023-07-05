@@ -1,5 +1,3 @@
-import os
-import django
 from django.conf import settings
 import socket
 from _thread import *
@@ -8,8 +6,11 @@ import pickle
 import math
 import time
 import random
+import sys
+import subprocess
 
 stopped = False
+active_players = []
 
 #my ip at home is '192.168.1.133' at DI its '192.168.201.216' from phone its '192.168.152.27'
 server = '192.168.152.27'
@@ -22,8 +23,11 @@ try:
 except socket.error as e:
     str(e)
 
-socket_handle.listen(2)
-print('Waiting for a connection, Server started')
+try:    
+    socket_handle.listen(2)
+    print('Waiting for a connection, Server started')
+except Exception as e:
+    str(e)
 
 current_player = 0
 player_active = 1
@@ -50,7 +54,17 @@ turn_num = 0
 turn_income = 2 + math.floor(turn_num/3)
 
 def reset_to_default():
-    global health, gold, discards, hands, mana, turn_num, game_state
+    global boards, health, gold, discards, hands, mana, turn_num, game_state
+    boards = [
+    {
+        'front': [None, None, None, None],
+        'rear': [None, None, None, None]
+    },
+    {
+        'front': [None, None, None, None],
+        'rear': [None, None, None, None]
+    },
+    ]
     health = [40, 40]
     gold = [0, 0]
     discards = [[],[]]
@@ -58,6 +72,9 @@ def reset_to_default():
     mana = [0,0]
     turn_num = 0
     game_state = 0
+    # for conn in active_players:
+    #     conn.close()
+    # # subprocess.call([sys.executable] + sys.argv)
 
 
 def send_data(data, conn):
@@ -86,8 +103,10 @@ def new_turn():
 
 
 def update_data(conn, player):
-    global turn_num, turn_income, player_active, game_state
+    global turn_num, turn_income, player_active, game_state, active_players
+
     while True:
+
         if player == 1:
             if (player_active == 1 and game_state%2==0) or (player_active == 2 and game_state == 1):
                 active = True
@@ -125,15 +144,17 @@ def update_data(conn, player):
                 'active': active,
                 'state': game_state,
             }
-        send_data(player_data_server, conn)
-        time.sleep(2)
+        if conn in active_players:
+            send_data(player_data_server, conn)
+            time.sleep(2)
 
 
 def threaded_client(connection, player):
 
     global stopped, health, gold, turn_num, player_active, current_player, game_state
 
-    while stopped == False:
+    while True:
+    # while stopped == False:
         serialized_data = connection.recv(16384)
         try:        
             data = pickle.loads(serialized_data)
@@ -142,7 +163,7 @@ def threaded_client(connection, player):
             time.sleep(2)
             data = pickle.loads(serialized_data)
         if not data or data == 'Stop':
-            stopped = True
+            # stopped = True
             print("Received message from the client:", data)
             break
         elif data == 'Start game':
@@ -193,9 +214,9 @@ def threaded_client(connection, player):
                     # print(f'Boards after player {player} turn', boards)
 
     print(f'Player {player} has disconnected')
-    connection.close()
     current_player -= 1
-    print(f'Now current player value is {current_player}')
+    active_players.remove(connection)
+    connection.close()
     if current_player == 0:
         reset_to_default()
         print('default player parameters have been reset')
@@ -204,10 +225,11 @@ def threaded_client(connection, player):
 def accept_connections():
     global current_player
 
-    while current_player < 2:
+    while True: #current_player < 2:
         connection, address = socket_handle.accept()
         current_player += 1
         print(f'Player {current_player} has connected')
+        active_players.append(connection)
         threading.Thread(target=threaded_client, args=(
             connection, current_player)).start()
 

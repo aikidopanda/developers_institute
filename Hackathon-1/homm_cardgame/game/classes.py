@@ -3,6 +3,7 @@ import random
 # Trait functions
 longspear = ['Pikeman']
 healer = ['Monk']
+armor = ['Knight', 'Stone Golem']
 charge = ['Champion']
 resurrect = ['Angel']
 pillager = ['Imp']
@@ -26,10 +27,11 @@ giants = ['Giant']
 
 
 class Player:
-    def __init__(self, color, name='Player', faction='Castle'):
+    def __init__(self, color, name='Player'):
         self.health = 40
         self.gold = 2
         self.mana = 0
+        self.blessings = 0
         self.shielded = False
         self.attack = 0
         self.deck, self.hand, self.discard = [], [], []
@@ -40,7 +42,7 @@ class Player:
         self.active_card = None
         self.color = color
         self.name = name
-        self.faction = faction
+        self.faction = ''
         self.active = False
 
     def __str__(self):
@@ -83,7 +85,7 @@ class Card:
         self.flying = flying
         self.image = image
         self.faction = faction
-        self.transformed = False #for now, used only with stone gargoyles
+        self.transformed = False  # for now, used only with stone gargoyles
         # self.attacked_this_turn == False
 
     def __str__(self) -> str:
@@ -93,18 +95,18 @@ class Card:
         return f'{self.name}, health: {self.health}, attack: {self.attack}, cost: {self.cost}'
 
     def fight_range(self, other):
-        other.health = other.health - self.attack
+        other.health -= other.name in armor and (self.attack - 1) or self.attack
 
     def fight_melee(self, other):
         if hasattr(other, 'name') and other.name in longspear:
             other.attacked(self)
         if self.name in cursing and other.attack > 0:
             other.attack -= 1
-        other.health -= self.attack
+        other.health -= other.name in armor and (self.attack - 1) or self.attack
         if hasattr(other, 'ranged') and other.ranged == True and other.name not in giants:
             self.health -= math.floor(other.attack/2)
         else:
-            self.health -= other.attack
+            self.health -= (self.name in armor and other.attack > 0) and (other.attack - 1) or other.attack
 
     def attacked(self, other):
         other.health -= 1
@@ -131,7 +133,7 @@ class Card:
             for k, v in board.items():
                 for i, card in enumerate(v):
                     if card != None and card.name == 'Stone Golem':
-                        card.health += 1
+                        card.health += 2
                         if card.health > card.health_base:
                             card.health = card.health_base
         if self.name in mana:
@@ -149,6 +151,10 @@ class Card:
                 )
                 player.hand.append(jenie_bonus)
                 player.mana = 0
+        if self.name in gold_generate:
+            player.gold += 1
+            if player.gold >= 8:
+                player.deal_card()
         if self.name in regeneration:
             self.health = self.health_base
         if self.name in necromancer:
@@ -160,29 +166,27 @@ class Card:
                 cost=1,
                 ranged=False,
                 flying=False,
-                image = 'game/images/cards/Necropolis/Skeleton.webp'
+                image='game/images/cards/Necropolis/Skeleton.webp'
             )
             player.hand.append(skeleton_bonus)
         if self.name in decay:
             player2.health -= 1
 
-    def startofturn(self, board, player=None, player2=None): # For better balance some endofturn effects were splitted and work at the turn beginning
-        if self.name in healer:
-            for k, v in board.items():
-                for i in range(len(v)):
-                    if v[i] != None and v[i].health < v[i].health_base:
-                        v[i].health += 1
-        if self.name in gold_generate:
-            player.gold += 1
-            if player.gold >= 10:
-                player.deal_card()
-        if self.name in repair:
-            for k, v in board.items():
-                for i, card in enumerate(v):
-                    if card != None and card.name == 'Stone Golem':
-                        card.health += 1
-                        if card.health > card.health_base:
-                            card.health = card.health_base
+    def bless(self, player):
+        player.blessings += 1
+        if player.blessings >= 2:
+            angel_bonus = Card(
+                name='Angel',
+                health=15,
+                health_base=15,
+                attack=10,
+                cost=8,
+                ranged=False,
+                flying=True,
+                image = 'game/images/cards/Castle/Angel.webp'
+            )
+            player.deck.append(angel_bonus)
+            player.blessings = 0
 
     def resurrect(self, player):
         player.discard.sort(key=lambda x: x.cost, reverse=True)
@@ -203,9 +207,6 @@ class Card:
 
     def charge(self, other, player=None):
         other.health -= math.ceil(self.attack/2)
-        if other.health <= 0:
-            player.discard.append(other)
-            other = None
 
     def upgrade_demon(self, board):
         for k, v in board.items():

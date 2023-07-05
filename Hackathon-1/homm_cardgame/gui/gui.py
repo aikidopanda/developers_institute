@@ -14,6 +14,7 @@ clicked = False
 
 screen = pygame.display.set_mode((1600, 900), pygame.SCALED)
 
+
 def text_objects(text, font):
     textSurface = font.render(text, True, maroon)
     return textSurface, textSurface.get_rect()
@@ -24,7 +25,7 @@ def text_objects_sm(text, font):
     return textSurface, textSurface.get_rect()
 
 
-def button(msg, x, y, width, height, colour, status, action=None):
+def button(msg, x, y, width, height, colour, status, action=None, image=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -34,12 +35,21 @@ def button(msg, x, y, width, height, colour, status, action=None):
         if click[0] == 1 and action != None and clicked == False:
             action()
 
-    pygame.draw.rect(screen, colour, (x, y, width, height))
+    if image != None:
+        screen.blit(
+            pygame.image.load(image), (x, y)
+        )
+        smallText = pygame.font.Font("freesansbold.ttf", 22)
+        textSurf, textRect = text_objects_sm(msg, smallText)
+        textRect.center = ((x+(width/2) + 45), (y+(height/2)))
+        screen.blit(textSurf, textRect)
+    else:
+        pygame.draw.rect(screen, colour, (x, y, width, height))
+        smallText = pygame.font.Font("freesansbold.ttf", 18)
+        textSurf, textRect = text_objects_sm(msg, smallText)
+        textRect.center = ((x+(width/2)), (y+(height/2)))
+        screen.blit(textSurf, textRect)
 
-    smallText = pygame.font.Font("freesansbold.ttf", 18)
-    textSurf, textRect = text_objects_sm(msg, smallText)
-    textRect.center = ((x+(width/2)), (y+(height/2)))
-    screen.blit(textSurf, textRect)
 
 def cardborder(x, y, width, height, colour):
     pygame.draw.rect(screen, colour, (x, y, width, height))

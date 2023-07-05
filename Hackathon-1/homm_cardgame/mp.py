@@ -30,6 +30,7 @@ Player2 = Player(opponent_color)
 factions = [castle, inferno, tower, necropolis]
 turn_num = 0
 game_state = 0
+cards_changed = 0
 
 
 def start_game():
@@ -48,6 +49,8 @@ def start_game():
         client_socket.sendall(pickled)
     except:
         print('No data was sent from client to server')
+    print('Game state, Player active, Enemy active: ',
+          game_state, Player1.active, Player2.active)
 
 # Server-calling functions
 
@@ -88,7 +91,6 @@ def receive_data(client_socket):
             print(e)
             time.sleep(2)
             data = pickle.loads(serialized_data)
-
 
         if isinstance(data, dict):
             if 'health' in data:
@@ -134,20 +136,18 @@ gamerunning = False
 
 
 def button_round(msg, x, y, radius, colour, status, action=None, image=None):
-    global clicked
+    # global clicked
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
     if x + radius > mouse[0] > x - radius and y + radius > mouse[1] > y - radius:
         if status == 'active' and Player1.active == True:
-            colour = maroon
-            if click[0] == 1 and action != None and clicked == False:
-                clicked = True
+            if click[0] == 1 and action != None:  # and clicked == False:
+                # clicked = True
                 action()
     if image != None:
         screen.blit(
-            pygame.image.load(
-            image), (x, y)
+            pygame.image.load(image), (x, y)
         )
     else:
         pygame.draw.circle(screen, colour, (x, y), radius)
@@ -162,6 +162,23 @@ def button_round(msg, x, y, radius, colour, status, action=None, image=None):
     screen.blit(textSurf, textRect)
 
 
+# Only for changing starting cards in the beginning
+def button_change(msg, x, y, width, height, colour, index):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    if x + width > mouse[0] > x and y + height > mouse[1] > y:
+        colour = maroon
+        if click[0] == 1 and action != None and clicked == False:
+            change_starting_card(index)
+
+    pygame.draw.rect(screen, colour, (x, y, width, height))
+    smallText = pygame.font.Font("freesansbold.ttf", 18)
+    textSurf, textRect = text_objects_sm(msg, smallText)
+    textRect.center = ((x+(width/2)), (y+(height/2)))
+    screen.blit(textSurf, textRect)
+
+
 def cardtoplay(x, y, width, height, index):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -169,7 +186,7 @@ def cardtoplay(x, y, width, height, index):
         screen.blit(pygame.image.load(
             Player1.hand[index].image), (x, y))
     if x + width > mouse[0] > x and y + height > mouse[1] > y:
-        if Player1.active == True and click[0] == 1 and Player1.gold >= Player1.hand[index].cost:
+        if Player1.active == True and click[0] == 1 and Player1.gold >= Player1.hand[index].cost and cards_changed >= 3:
             pygame.time.delay(500)
             Player1.choose_card(Player1.hand[index], index)
             synchronize_players(Player1, Player2)
@@ -205,11 +222,14 @@ def cardslot(x, y, width, height, colour, index):
 
             if Player1.active_card.name in card_drawing:
                 Player1.deal_card()
-                # deal_card(Player1.deck, Player1.hand)
+                synchronize_players(Player1, Player2)
+
+            if Player1.active_card.name in healer:
+                Player1.active_card.bless(Player1)
                 synchronize_players(Player1, Player2)
 
             if Player1.active_card.name in resurrect:  # angel resurrects the strongest unit in owner discard
-                pygame.time.delay(500)
+                pygame.time.delay(200)
                 Player1.active_card.resurrect(Player1)
                 # Player1.discard.sort(key=lambda x: x.cost, reverse=True)
                 # Player1.discard[0].health = Player1.discard[0].health_base
@@ -251,11 +271,14 @@ def cardslot_rear(x, y, width, height, colour, index):
 
             if Player1.active_card.name in card_drawing:
                 Player1.deal_card()
-                # deal_card(Player1.deck, Player1.hand)
+                synchronize_players(Player1, Player2)
+
+            if Player1.active_card.name in healer:
+                Player1.active_card.bless(Player1)
                 synchronize_players(Player1, Player2)
 
             if Player1.active_card.name in resurrect:  # angel resurrects the strongest unit in owner discard
-                pygame.time.delay(500)
+                pygame.time.delay(200)
                 Player1.active_card.resurrect(Player1)
                 # Player1.discard.sort(key=lambda x: x.cost, reverse=True)
                 # Player1.discard[0].health = Player1.discard[0].health_base
@@ -306,7 +329,7 @@ def start():
 def menuexit():
     global menurunning, gamerunning
     gamerunning = False
-    menurunning = True  # doesn't work as intended yet, should work on it when I have time
+    # menurunning = True  # doesn't work as intended yet, should work on it when I have time
 
 
 def exit_game():
@@ -326,7 +349,6 @@ def processing():
     if game_state >= 2:
         if len(Player1.deck) > 0:
             Player1.deal_card()
-            # deal_card(Player1.deck, Player1.hand)
     if game_state < 3:
         synchronize_players(Player1, Player2)
     else:
@@ -371,7 +393,7 @@ def attacking(line):
                             else:
                                 Player2.discard.append(enemyrear[i])
                                 enemyrear[i] = None
-                # usual melee attack, only front line can launch it
+                # usual melee attack
                 elif line[i].ranged == False:
                     if enemyfront[i].name in fireshield and line[i].health <= 2:
                         enemyfront[i].fireshield(line[i], Player1)
@@ -402,6 +424,12 @@ def attacking(line):
                         if line[i].name in charge and line[i].health > 0:  # champion
                             if enemyrear[i] != None:
                                 line[i].charge(enemyrear[i], Player2)
+                                if enemyrear[i].health <= 0:
+                                    if enemyrear[i].name in stoneform and enemyrear[i].transformed == False:
+                                        enemyrear[i].stoneform()
+                                    else:
+                                        Player2.discard.append(enemyrear[i])
+                                        enemyrear[i] = None
                         Player2.discard.append(enemyfront[i])
                         # If card is killed, clear its slot
                         enemyfront[i] = None
@@ -438,7 +466,7 @@ def attacking(line):
                     enemy.gold -= 1
                 line[i].fight_melee(enemy)
 
-            # death_check(line[i], Player1)
+            # death_check(line, i, Player1)
             if line[i] and line[i].health <= 0:
                 if line[i].name in stoneform and line[i].transformed == False:
                     line[i].stoneform()
@@ -455,10 +483,33 @@ def cancel_card():
         synchronize_players(Player1, Player2)
 
 
+def change_starting_card(index):
+
+    global cards_changed
+
+    pygame.time.delay(500)
+    cards_changed += 1
+
+    card = Player1.hand.pop(index)
+    Player1.deck.append(card)
+    random.shuffle(Player1.deck)
+    Player1.deal_card()
+    synchronize_players(Player1, Player2)
+
+
+def player_is_ready():
+
+    global cards_changed
+    cards_changed += 3
+
+
 def death_check(line, index, player):
     if line[index].health <= 0:
-        player.discard.append(line[index])
-        line[index] = None
+        if line[index].name in stoneform and line[index].transformed == False:
+            line[index].stoneform()
+        else:
+            player.discard.append(line[index])
+            line[index] = None
 
 
 while menurunning:
@@ -482,19 +533,25 @@ while menurunning:
 
     menuText = pygame.font.Font("freesansbold.ttf", 20)
 
-    ChoiceSurf, ChoiceRect = text_objects("Choose your faction", menuText)
+    screen.blit(
+        pygame.image.load('game/images/faction.png'), (1220, 10)
+    )
+
+    ChoiceSurf, ChoiceRect = text_objects_sm("Choose your faction", menuText)
     ChoiceRect.center = (1400, 50)
     screen.blit(ChoiceSurf, ChoiceRect)
 
-    FactionSurf, FactionRect = text_objects(f'{Player1.faction}', menuText)
-    FactionRect.center = (1400, 125)
+    FactionSurf, FactionRect = text_objects_sm(f'{Player1.faction}', menuText)
+    FactionRect.center = (1400, 100)
     screen.blit(FactionSurf, FactionRect)
 
     for i, faction in enumerate(factions):
         factionslot(1250, 200 + i * 150, 300, 140, i)
 
-    button('Start game', 700, 500, 200, 100, red, 'active', start)
-    button('Quit', 700, 650, 200, 100, red, 'active', exit_game)
+    button('Start game', 700, 500, 200, 100, red,
+           'active', start, 'game/images/menubutton.png')
+    button('Quit', 700, 650, 200, 100, red, 'active',
+           exit_game, 'game/images/menubutton.png')
 
     pygame.display.flip()
     CLOCK.tick(FPS)
@@ -547,13 +604,13 @@ while gamerunning:
                10, 825, 900, 80, player_color, 'passive')
     else:
         button(f"Its turn {turn_num}, phase {game_state}. You are {action}. {instruction}",
-               10, 825, 900, 80, player_color, 'passive')
+               10, 825, 1000, 80, player_color, 'passive')
 
     for j in range(2):
         if j == 0:
             for i in range(4):
                 cardborder(872 + i * 100, 524 + j * 150,
-                         89, 117, black)
+                           89, 117, black)
                 cardslot(873 + i * 100, 525 + j * 150,
                          87, 115, player_color, i)
                 if Player1.board['front'][i]:
@@ -562,7 +619,7 @@ while gamerunning:
         if j == 1:
             for i in range(4):
                 cardborder(872 + i * 100, 524 + j * 150,
-                         89, 117, black)
+                           89, 117, black)
                 cardslot_rear(873 + i * 100, 525 + j * 150,
                               87, 115, player_color, i)
                 if Player1.board['rear'][i]:
@@ -573,7 +630,7 @@ while gamerunning:
         if j == 0:
             for i in range(4):
                 cardborder(872 + i * 100, 24 + j * 150,
-                         89, 117, black)
+                           89, 117, black)
                 cardslot_opponent_rear(
                     873 + i * 100, 25 + j * 150, 87, 115, opponent_color, i)
                 if Player2.board['rear'][i]:
@@ -582,7 +639,7 @@ while gamerunning:
         if j == 1:
             for i in range(4):
                 cardborder(872 + i * 100, 24 + j * 150,
-                         89, 117, black)
+                           89, 117, black)
                 cardslot_opponent(873 + i * 100, 25 + j * 150,
                                   87, 115, opponent_color, i)
                 if Player2.board['front'][i]:
@@ -591,7 +648,7 @@ while gamerunning:
 
     for i, card in enumerate(Player1.hand):
         cardborder(19 + i * 100, 689,
-                         89, 137, black)
+                   89, 137, black)
         cardtoplay(20 + i * 100, 710, 87, 115, i)
         button(f"{i + 1}",
                43 + i * 100, 640, 43, 20, player_color, 'passive')
@@ -599,6 +656,15 @@ while gamerunning:
                20 + i * 100, 690, 87, 20, opponent_color, 'passive')
         button(f"Cost: {card.cost}",
                20 + i * 100, 660, 87, 20, maroon, 'passive')
+        if cards_changed < 3:
+            cardborder(19 + i * 100, 609, 89, 22, black)
+            button_change("Change",
+            20 + i * 100, 610, 87, 20, player_color, i)
+            
+    if cards_changed < 3:
+        cardborder(19, 579, 89, 22, black)
+        button("Ready",
+                20, 580, 87, 20, player_color, 'active', player_is_ready)
 
     if game_state >= 2 and Player1.active == True:
         button_round(f'Attack (Space)', 1010, 350,
@@ -611,6 +677,8 @@ while gamerunning:
                      95, red, 'active', processing, 'game/images/endturn.png')
 
     smallText = pygame.font.Font("freesansbold.ttf", 26)
+    miniText = pygame.font.Font("freesansbold.ttf", 18)
+    income = 2 + math.floor(turn_num/3)
 
     screen.blit(
         pygame.image.load('game/images/hp.png'), (1330, 620)
@@ -627,26 +695,28 @@ while gamerunning:
     TextRect.center = (1375, 175)
     screen.blit(TextSurf, TextRect)
 
+    cardborder(1324, 224, 202, 52, black)
+    button(f'Max gold stored: {income * 2}', 1325,
+           225, 200, 50, opponent_color, 'passive')
+
     screen.blit(
         pygame.image.load('game/images/gold.png'), (1400, 630)
     )
 
-    TextSurf, TextRect = text_objects(f'{Player1.gold}', smallText)
+    TextSurf, TextRect = text_objects(f'{Player1.gold}+{income}', smallText)
     TextRect.center = (1475, 675)
     screen.blit(TextSurf, TextRect)
+
+    cardborder(1324, 724, 202, 52, black)
+    button(f'Max gold stored: {income * 2}', 1325,
+           725, 200, 50, player_color, 'passive')
 
     screen.blit(
         pygame.image.load('game/images/gold.png'), (1400, 130)
     )
-    TextSurf, TextRect = text_objects(f'{Player2.gold}', smallText)
+    TextSurf, TextRect = text_objects(f'{Player2.gold}+{income}', smallText)
     TextRect.center = (1475, 175)
     screen.blit(TextSurf, TextRect)
-    # button_round(f'{Player1.health} HP', 1375, 660, 50, maroon, 'passive')
-    # button_round(f'{Player2.health} HP',
-    #              1375, 170, 50, maroon, 'passive')
-    # button_round(f'{Player1.gold} Gold', 1475, 660, 50, maroon, 'passive')
-    # button_round(f'{Player2.gold} Gold',
-    #              1475, 170, 50, maroon, 'passive')
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
