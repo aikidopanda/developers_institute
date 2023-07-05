@@ -1,4 +1,3 @@
-from django.conf import settings
 import socket
 from _thread import *
 import threading
@@ -6,9 +5,6 @@ import pickle
 import math
 import time
 import random
-import sys
-import subprocess
-
 stopped = False
 active_players = []
 

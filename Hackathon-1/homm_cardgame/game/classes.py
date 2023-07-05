@@ -186,6 +186,7 @@ class Card:
                 image = 'game/images/cards/Castle/Angel.webp'
             )
             player.deck.append(angel_bonus)
+            random.shuffle(player.deck)
             player.blessings = 0
 
     def resurrect(self, player):
