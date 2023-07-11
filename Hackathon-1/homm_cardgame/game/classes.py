@@ -195,9 +195,14 @@ class Card:
         player.discard[0].attack = player.discard[0].attack_base
         player.discard[1].health = player.discard[1].health_base
         player.discard[1].attack = player.discard[1].attack_base
-        player.hand.append(player.discard[1])
-        print(player.discard[0])
-        player.active_card = player.discard.pop(0)
+        player.discard[2].health = player.discard[1].health_base
+        player.discard[2].attack = player.discard[1].attack_base
+        if player.discard[0].cost == 8: #angels can't resurrect each other, it would be imbalanced
+            player.hand.append(player.discard[2])
+            player.active_card = player.discard.pop(1)
+        else:
+            player.hand.append(player.discard[1])
+            player.active_card = player.discard.pop(0)
         random.shuffle(player.discard)
 
     def consume(self, other):

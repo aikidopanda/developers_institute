@@ -378,8 +378,8 @@ def create_units_deck(deck, faction=castle):
             deck.append(black_knight)
         bone_dragon = Card(
             name='Bone Dragon',
-            health=15,
-            health_base=15,
+            health=18,
+            health_base=18,
             attack=7,
             cost=8,
             ranged=False,

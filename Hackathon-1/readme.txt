@@ -15,7 +15,8 @@ How to play:
 
 Choose your faction (one of four images in the right part of the screen) and press 'Start game'. Your opponent should do the same.
 
-At the beginning of the game you receive 3 random cards from your faction deck. There are 28 cards in your deck in total.
+There are 28 cards in your deck in total. (7+6+5+4+3+2+1): 7 units of first tier, 6 units of second tier and so on
+At the beginning of the game you receive 3 random cards from your faction deck. 
 Please note that some card effects allow you to draw/generate additional cards.
 Important: after your deck is empty, it DOES NOT reshuffle! If you have no cards to play, deal with it:). Deck management is a part of this game.
 

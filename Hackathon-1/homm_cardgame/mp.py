@@ -3,8 +3,6 @@
 from game.classes import *
 from initialize import *
 from gui.gui import *
-import os
-import django
 import pygame
 import pickle
 import socket
@@ -15,17 +13,19 @@ from pygame.locals import *
 # card size: width 87 height 115. Pin it here since it will be standard for all cards
 # myvenv\Scripts\activate
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'homm_cardgame.settings')
-django.setup()
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'homm_cardgame.settings')
+# django.setup()
 
-# my ip at home is '192.168.1.133' at DI its '192.168.201.216', fron phone its 192.168.152.27
-address = '192.168.152.27'
+# IP-address of my linode server '170.187.187.119'
+# If you have my server.py file you can run your own server
+# To do it, place the IP of your server to the 'address' variable and type 'python server.py' in the command line (you should be in homm_cardgame folder!)
+address = '170.187.187.119'
 port = 5555
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((address, port))
 
-Player1 = Player(player_color, 'AikidoPanda')
+Player1 = Player(player_color)
 Player2 = Player(opponent_color)
 factions = [castle, inferno, tower, necropolis]
 turn_num = 0
@@ -40,7 +40,6 @@ def start_game():
     # Dealing 3 starting cards
     for i in range(3):
         Player1.deal_card()
-        # deal_card(Player1.deck, Player1.hand)
     synchronize_players(Player1, Player2)
 
     msg = 'Start game'
@@ -53,8 +52,6 @@ def start_game():
           game_state, Player1.active, Player2.active)
 
 # Server-calling functions
-
-
 def synchronize_players(p1, p2):
     global game_state
     pdata_1 = {
@@ -136,14 +133,12 @@ gamerunning = False
 
 
 def button_round(msg, x, y, radius, colour, status, action=None, image=None):
-    # global clicked
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
     if x + radius > mouse[0] > x - radius and y + radius > mouse[1] > y - radius:
         if status == 'active' and Player1.active == True:
             if click[0] == 1 and action != None:  # and clicked == False:
-                # clicked = True
                 action()
     if image != None:
         screen.blit(
@@ -186,7 +181,7 @@ def cardtoplay(x, y, width, height, index):
         screen.blit(pygame.image.load(
             Player1.hand[index].image), (x, y))
     if x + width > mouse[0] > x and y + height > mouse[1] > y:
-        if Player1.active == True and click[0] == 1 and Player1.gold >= Player1.hand[index].cost and cards_changed >= 3:
+        if Player1.active == True and game_state < 2 and click[0] == 1 and Player1.gold >= Player1.hand[index].cost and cards_changed >= 3:
             pygame.time.delay(500)
             Player1.choose_card(Player1.hand[index], index)
             synchronize_players(Player1, Player2)
@@ -231,15 +226,6 @@ def cardslot(x, y, width, height, colour, index):
             if Player1.active_card.name in resurrect:  # angel resurrects the strongest unit in owner discard
                 pygame.time.delay(200)
                 Player1.active_card.resurrect(Player1)
-                # Player1.discard.sort(key=lambda x: x.cost, reverse=True)
-                # Player1.discard[0].health = Player1.discard[0].health_base
-                # Player1.discard[0].attack = Player1.discard[0].attack_base
-                # Player1.discard[1].health = Player1.discard[1].health_base
-                # Player1.discard[1].attack = Player1.discard[1].attack_base
-                # Player1.hand.append(Player1.discard[1])
-                # print(Player1.discard[0])
-                # Player1.active_card = Player1.discard.pop(0)
-                # random.shuffle(Player1.discard)
             elif Player1.active_card.name in demonologist:  # Pit fiend transforms all allied imps into demons
                 Player1.active_card.upgrade_demon(Player1.board)
                 Player1.active_card = None
@@ -280,15 +266,6 @@ def cardslot_rear(x, y, width, height, colour, index):
             if Player1.active_card.name in resurrect:  # angel resurrects the strongest unit in owner discard
                 pygame.time.delay(200)
                 Player1.active_card.resurrect(Player1)
-                # Player1.discard.sort(key=lambda x: x.cost, reverse=True)
-                # Player1.discard[0].health = Player1.discard[0].health_base
-                # Player1.discard[0].attack = Player1.discard[0].attack_base
-                # Player1.discard[1].health = Player1.discard[1].health_base
-                # Player1.discard[1].attack = Player1.discard[1].attack_base
-                # Player1.hand.append(Player1.discard[1])
-                # print(Player1.discard[0])
-                # Player1.active_card = Player1.discard.pop(0)
-                # random.shuffle(Player1.discard)
             elif Player1.active_card.name in demonologist:  # Pit fiend transforms allied imps into demons
                 Player1.active_card.upgrade_demon(Player1.board)
                 Player1.active_card = None
@@ -344,6 +321,7 @@ def exit_game():
 
 def processing():
     global turn_num, clicked, game_state
+    Player1.active = False
     pygame.time.delay(1000)
     game_state += 1
     if game_state >= 2:
@@ -498,7 +476,6 @@ def change_starting_card(index):
 
 
 def player_is_ready():
-
     global cards_changed
     cards_changed += 3
 
@@ -548,9 +525,9 @@ while menurunning:
     for i, faction in enumerate(factions):
         factionslot(1250, 200 + i * 150, 300, 140, i)
 
-    button('Start game', 700, 500, 200, 100, red,
+    button('Start game', 700, 500, 250, 100, red,
            'active', start, 'game/images/menubutton.png')
-    button('Quit', 700, 650, 200, 100, red, 'active',
+    button('Quit', 700, 650, 250, 100, red, 'active',
            exit_game, 'game/images/menubutton.png')
 
     pygame.display.flip()
