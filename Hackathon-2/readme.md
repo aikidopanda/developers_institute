@@ -1,5 +1,7 @@
 This is a small game-like website that can be used both for educational and entertainment purposes.
 
+![Hackathon-2](https://github.com/aikidopanda/developers_institute/assets/31676788/fd8474d5-0043-417b-b16b-a003f41b4ac7)
+
 How to launch:
 1. Add your database settings in db_operations.js 'sequelize' and 'client' variables. Currently I removed my db password from project settings.
 2. Uncomment syncModels() and populateDatabase() functions in db_operations.js.
